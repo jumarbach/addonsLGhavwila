@@ -1,5 +1,6 @@
 # addonsLGhavwila
 addon for Ph1lou's Werewolf plugin: https://github.com/Ph1Lou
+
 depends on https://github.com/Ph1Lou/WereWolfAPI
 
 Implements two additional roles: Witness and Medium
