@@ -1,0 +1,18 @@
+{
+  "werewolf": {
+    "role": {
+      "medium": {
+        "display" : "Medium",
+        "description" : "§6LOUP-GAROU §7➽§9 Vous êtes §1Medium§9. Votre objectif est d'éliminer les loups. Par votre lien avec le monde des esprits, vous serez immédiatement informé lorsque un joueur s'apprete a mourir",
+        "death_message" : "[§eLG UHC§r] Le joueur §b%s§r est aux portes de la mort"
+      },
+      "witness": {
+        "display" : "Témoin",
+        "description" : "§6LOUP-GAROU §7➽§9 Vous êtes §1Témoin§9. Votre objectif est d'éliminer les loups. A l'annonce de la liste des loups, vous connaitrez le pseudo d'un membre du camp des loups. Toutefois, si celui-ci venait a mourir, vous perdrez 4 coeurs permanents",
+        "reveal_culprit" : "[§eLG UHC§r] Le joueur §b%s§r appartient au camp des loup-garous",
+        "culprit_death" : "[§eLG UHC§r] Le loup que vous connaissiez est mort, vous perdez donc 4 coeurs permanents",
+        "change" : "[§eLG UHC§r] L'identité du loup que vous connaissez a changée, il s'agit désormais de §b%s§r"
+      }
+    }
+  }
+}

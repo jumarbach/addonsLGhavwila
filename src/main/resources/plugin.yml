@@ -1,0 +1,9 @@
+name: addonsLG_havwila
+main: io.havwila.addonsLG.Main
+version: "1.0"
+description: adds new roles
+author: havwila
+api-version: "1.8"
+load: STARTUP
+dependances:
+depend: [WereWolfPlugin]

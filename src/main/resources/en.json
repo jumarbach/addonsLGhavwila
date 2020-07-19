@@ -1,0 +1,18 @@
+{
+  "werewolf": {
+    "role": {
+      "medium": {
+        "display" : "Medium",
+        "description" : "§6WEREWOLF §7➽§9 You are a §1Medium§9. Your objective is to kill the wolves. By your link with the spirit world, you'll be notified immediately whenever someone enters judgment",
+        "death_message" : "[§eLG UHC§r] The player §b%s§r entered judgment"
+      },
+      "witness": {
+        "display" : "Witness",
+        "description" : "§6WEREWOLF §7➽§9 You are a §1Witness§9. Your objective is to kill the wolves. When the wolves's list is announced, you'll get to know the name of a wolf. However, when that wolf dies, you'll lose 4 permanent hearts",
+        "reveal_culprit" : "[§eLG UHC§r] The player §b%s§r is a wolf",
+        "culprit_death" : "[§eLG UHC§r] The wolf you knew about died, therefore you lose 4 permanent hearts",
+        "change" : "[§eLG UHC§r] The identity of the wolf you know has changed, it is now §b%s§r"
+      }
+    }
+  }
+}
