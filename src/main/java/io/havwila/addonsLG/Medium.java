@@ -1,13 +1,16 @@
 package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
-import io.github.ph1lou.werewolfapi.PlayerWW;
+
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.events.DayEvent;
-import io.github.ph1lou.werewolfapi.events.FirstDeathEvent;
-import io.github.ph1lou.werewolfapi.events.NightEvent;
-import io.github.ph1lou.werewolfapi.events.SecondDeathEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.RolesVillage;
+import io.github.ph1lou.werewolfapi.IPlayerWW;
+import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
+import io.github.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
+import org.jetbrains.annotations.NotNull;
+import org.bukkit.event.EventHandler;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Bukkit;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
@@ -15,10 +18,10 @@ import org.bukkit.event.EventHandler;
 
 import java.util.UUID;
 
-public class Medium extends RolesVillage{
+public class Medium extends RoleVillage{
 
-    public Medium(GetWereWolfAPI main, WereWolfAPI game, UUID uuid) {
-        super(main,game,uuid);
+    public Medium(WereWolfAPI game, IPlayerWW playerWW, String key) {
+        super(game, playerWW, key);
     }
 
     @Override
@@ -27,14 +30,14 @@ public class Medium extends RolesVillage{
     }
 
     @Override
-    public String getDisplay() {
-        return "werewolf.role.medium.display";
+    public void recoverPower() {
+
     }
 
     @EventHandler
     public void onFirstDeathEvent(FirstDeathEvent event){
 
-        PlayerWW p = game.getPlayersWW().get(event.getUuid());
+        IPlayerWW p = event.getPlayerWW();
         if(Bukkit.getPlayer(getPlayerUUID()) != null){
             TextComponent medium_msg = new TextComponent(game.translate("werewolf.role.medium.death_message", p.getName()));
             Bukkit.getPlayer(getPlayerUUID()).spigot().sendMessage(medium_msg);

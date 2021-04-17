@@ -1,39 +1,42 @@
 package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
-import io.github.ph1lou.werewolfapi.RoleRegister;
-import io.github.ph1lou.werewolfapi.enumlg.Category;
+import io.github.ph1lou.werewolfapi.enums.Category;
+import io.github.ph1lou.werewolfapi.enums.UniversalMaterial;
+import io.github.ph1lou.werewolfapi.registers.AddonRegister;
+import io.github.ph1lou.werewolfapi.registers.IRegisterManager;
+import io.github.ph1lou.werewolfapi.registers.RoleRegister;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Main extends JavaPlugin {
 
-    public static Main instance;
-    public static Main getInstance() {
-        return instance;
-    }
-
-    public GetWereWolfAPI ww;
+    GetWereWolfAPI ww;
 
     @Override
     public void onEnable() {
-        instance = this;
 
-        ww = (GetWereWolfAPI) Bukkit.getPluginManager().getPlugin("WereWolfPlugin");
+        ww =  getServer().getServicesManager().load(GetWereWolfAPI.class);
 
-        ww = (GetWereWolfAPI) Bukkit.getPluginManager().getPlugin("WereWolfPlugin");
+        IRegisterManager registerManager = ww.getRegisterManager();
 
-        ww.loadTranslation(this,"fr");
-        ww.getAddonsList().add(this);
+        String addonKey = "werewolf.addonLGhavwila";
+
+        registerManager.registerAddon(new AddonRegister(addonKey, "fr", this)
+                .setItem(new ItemStack(UniversalMaterial.ARROW.getType()))
+                .addLoreKey("werewolf.role.description")
+                .addAuthors("havwila", UUID.fromString("792945f6-ce44-4039-8382-8652153fe884")));
 
         try {
-            RoleRegister medium = new RoleRegister(this,ww,"werewolf.role.medium.display").registerRole(Medium.class);
-            medium.setLore(Arrays.asList("§fMedium","Par havwila")).addCategory(Category.ADDONS).addCategory(Category.VILLAGER).create();
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.medium.display", Medium.class)
+                    .addLoreKey("werewolf.role.medium.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
 
-            RoleRegister witness = new RoleRegister(this,ww,"werewolf.role.witness.display").registerRole(Witness.class);
-            witness.setLore(Arrays.asList("§fTémoin","Par havwila")).addCategory(Category.ADDONS).addCategory(Category.VILLAGER).create();
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.witness.display", Witness.class)
+                    .addLoreKey("werewolf.role.witness.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

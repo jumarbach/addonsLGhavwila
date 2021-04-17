@@ -1,15 +1,15 @@
 package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
-import io.github.ph1lou.werewolfapi.PlayerWW;
+import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enumlg.State;
-import io.github.ph1lou.werewolfapi.events.FinalDeathEvent;
-import io.github.ph1lou.werewolfapi.events.StealEvent;
-import io.github.ph1lou.werewolfapi.events.WereWolfListEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.AffectedPlayers;
-import io.github.ph1lou.werewolfapi.rolesattributs.Power;
-import io.github.ph1lou.werewolfapi.rolesattributs.RolesVillage;
+import io.github.ph1lou.werewolfapi.enums.StatePlayer;
+import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
+import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
+import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
+import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
+import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
+import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,15 +20,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class Witness extends RolesVillage implements AffectedPlayers, Power {
+public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
 
-    public Witness(GetWereWolfAPI main, WereWolfAPI game, UUID uuid) {
-        super(main,game,uuid);
+    public Witness(WereWolfAPI main, IPlayerWW playerWW, String key) {
+        super(main,playerWW, key);
     }
 
-    private final List<UUID> affectedPlayer = new ArrayList<>();
+    private final List<IPlayerWW> affectedPlayer = new ArrayList<>();
     private boolean power = true;
-
 
     @Override
     public String getDescription() {
@@ -36,18 +35,18 @@ public class Witness extends RolesVillage implements AffectedPlayers, Power {
     }
 
     @Override
-    public String getDisplay() {
-        return "werewolf.role.witness.display";
+    public void recoverPower() {
+
     }
 
     @Override
-    public void addAffectedPlayer(UUID uuid) {
-        this.affectedPlayer.add(uuid);
+    public void addAffectedPlayer(IPlayerWW iPlayerWW) {
+        this.affectedPlayer.add(iPlayerWW);
     }
 
     @Override
-    public void removeAffectedPlayer(UUID uuid) {
-        this.affectedPlayer.remove(uuid);
+    public void removeAffectedPlayer(IPlayerWW iPlayerWW) {
+        this.affectedPlayer.remove(iPlayerWW);
     }
 
     @Override
@@ -56,27 +55,27 @@ public class Witness extends RolesVillage implements AffectedPlayers, Power {
     }
 
     @Override
-    public List<UUID> getAffectedPlayers() {
+    public List<IPlayerWW> getAffectedPlayers() {
         return (this.affectedPlayer);
     }
 
     @Override
-    public void setPower(Boolean power) {
-        this.power = power;
+    public void setPower(boolean b) {
+        this.power = b;
     }
 
     @Override
-    public Boolean hasPower() {
+    public boolean hasPower() {
         return this.power;
     }
 
     @EventHandler
     public void onWerewolfListEvent(WereWolfListEvent event){
 
-        List<PlayerWW>  wolves = new ArrayList<>();
-        for (PlayerWW p : game.getPlayersWW().values()) {
+        List<IPlayerWW> wolves = new ArrayList<>();
+        for (IPlayerWW p : game.getPlayerWW()) {
 
-            if(p.isState(State.ALIVE) && p.getRole().isWereWolf() && !p.getRole().isNeutral()) {
+            if(p.isState(StatePlayer.ALIVE) && p.getRole().isWereWolf()) {
                 wolves.add(p);
             }
         }
@@ -84,8 +83,8 @@ public class Witness extends RolesVillage implements AffectedPlayers, Power {
         if (wolves.isEmpty()){
             return;
         }
-        PlayerWW culprit = wolves.get((int) Math.floor(new Random(System.currentTimeMillis()).nextFloat()*wolves.size()));
-        addAffectedPlayer(culprit.getRole().getPlayerUUID());
+        IPlayerWW culprit = wolves.get((int) Math.floor(new Random(System.currentTimeMillis()).nextFloat()*wolves.size()));
+        addAffectedPlayer(culprit);
 
         Player player = Bukkit.getPlayer(getPlayerUUID());
         player.sendMessage(game.translate("werewolf.role.witness.reveal_culprit",culprit.getName()));
@@ -94,52 +93,43 @@ public class Witness extends RolesVillage implements AffectedPlayers, Power {
 
     @EventHandler
     public void onFinalDeathEvent(FinalDeathEvent event){
-        UUID uuid = event.getUuid();
-        if(!getAffectedPlayers().contains(uuid)) return;
-        if(game.getPlayersWW().get(getPlayerUUID()).isState(State.DEATH)) return;
+        IPlayerWW playerWW = event.getPlayerWW();
+        if(!getAffectedPlayers().contains(playerWW)) return;
+        if(getPlayerWW().isState(StatePlayer.DEATH))
         if(!power) return;
 
-        removeAffectedPlayer(uuid);
+        removeAffectedPlayer(playerWW);
         this.power = false;
 
-        Player player = Bukkit.getPlayer(getPlayerUUID());
-        player.setMaxHealth(Math.max(1, player.getMaxHealth() - 8));
-        player.sendMessage(game.translate("werewolf.role.witness.culprit_death"));
+        getPlayerWW().removePlayerMaxHealth(8);
+        getPlayerWW().sendMessageWithKey("werewolf.role.witness.culprit_death");
     }
 
     @EventHandler
     public void onTargetIsStolen(StealEvent event){
-        UUID newUUID = event.getNewUUID();
-        UUID oldUUID = event.getOldUUID();
-        PlayerWW p = game.getPlayersWW().get(getPlayerUUID());
+        IPlayerWW player = event.getPlayerWW();
+        IPlayerWW thief = event.getThiefWW();
 
-        if(!getAffectedPlayers().contains(oldUUID)) return;
+        if(!getAffectedPlayers().contains(player)) return;
 
-        removeAffectedPlayer(oldUUID);
-        addAffectedPlayer(newUUID);
+        removeAffectedPlayer(player);
+        addAffectedPlayer(thief);
 
-        if(!p.isState(State.ALIVE)) return;
+        if(getPlayerWW().isState(StatePlayer.DEATH)) return;
 
-        if(Bukkit.getPlayer(getPlayerUUID())!=null) {
-            Player player = Bukkit.getPlayer(getPlayerUUID());
-            player.sendMessage(game.translate("werewolf.role.witness.change",game.getPlayersWW().get(newUUID).getName()));
-        }
+        getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", thief.getName());
     }
 
-    @Override
-    public void stolen(UUID uuid){
+    @EventHandler
+    public void onStealEvent(StealEvent event){
 
-        if(Bukkit.getPlayer(getPlayerUUID())==null){
-            return;
-        }
-
-        Player player = Bukkit.getPlayer(getPlayerUUID());
+        if (!event.getThiefWW().equals(getPlayerWW())) return;
 
         if(power) {
-            player.sendMessage(game.translate("werewolf.role.witness.reveal_culprit",game.getPlayersWW().get(getAffectedPlayers().get(0)).getName()));
+            getPlayerWW().sendMessageWithKey("werewolf.role.witness.reveal_culprit", getAffectedPlayers().get(0).getName());
         }
         else {
-            player.setMaxHealth(Math.max(1, player.getMaxHealth() - 8));
+            getPlayerWW().removePlayerMaxHealth(8);
         }
     }
 }
