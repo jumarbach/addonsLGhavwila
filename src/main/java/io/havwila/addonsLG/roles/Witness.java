@@ -1,6 +1,5 @@
-package io.havwila.addonsLG;
+package io.havwila.addonsLG.roles;
 
-import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
@@ -13,12 +12,11 @@ import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
 
@@ -30,7 +28,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
     private boolean power = true;
 
     @Override
-    public String getDescription() {
+    public @NotNull String getDescription() {
         return game.translate("werewolf.role.witness.description");
     }
 

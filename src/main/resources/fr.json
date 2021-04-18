@@ -14,6 +14,18 @@
         "reveal_culprit" : "[§eLG UHC§r] Le joueur §b%s§r appartient au camp des loup-garous",
         "culprit_death" : "[§eLG UHC§r] Le loup que vous connaissiez est mort, vous perdez donc 4 coeurs permanents",
         "change" : "[§eLG UHC§r] L'identité du loup que vous connaissez a changée, il s'agit désormais de §b%s§r"
+      },
+      "croupier": {
+        "display": "Croupier",
+        "description": "§6LOUP-GAROU §7➽§9 Vous êtes §1Croupier§9. Votre objectif est d'éliminer les loup garous. Chaque jour, vous pourrez séléctionner un joueur qui recevra le pseudo d'un joueur ainsi que 3 roles, parmis lesquels se trouve le role de ce joueur. Le même message sera aussi envoyé à 1 ou 2 autres joueurs",
+        "item": "Role par havwila",
+        "command": "distribuer",
+        "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un jouer avec §b/ww distribuer§r vous avez §b%s",
+        "not_enough_players": "Il ne reste pas assez de joueurs pour utiliser cette commande",
+        "yourself": "Vous ne pouvez pas vous sélectionner vous-même",
+        "repeated_target": "Vous ne pouvez sélectionner qu'une seule fois le même joueur",
+        "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s, %s, %s",
+        "confirm": "[§eLG UHC§r] Les messages ont été envoyés"
       }
     }
   }

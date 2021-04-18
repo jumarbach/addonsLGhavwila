@@ -1,22 +1,13 @@
-package io.havwila.addonsLG;
-
-import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
+package io.havwila.addonsLG.roles;
 
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
+import org.bukkit.event.EventHandler;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
-import org.bukkit.event.EventHandler;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.Bukkit;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-
-import java.util.UUID;
 
 public class Medium extends RoleVillage{
 
@@ -25,7 +16,7 @@ public class Medium extends RoleVillage{
     }
 
     @Override
-    public String getDescription() {
+    public @NotNull String getDescription() {
         return game.translate("werewolf.role.medium.description");
     }
 

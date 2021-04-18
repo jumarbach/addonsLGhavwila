@@ -2,15 +2,20 @@ package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Category;
+import io.github.ph1lou.werewolfapi.enums.StateGame;
+import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.enums.UniversalMaterial;
 import io.github.ph1lou.werewolfapi.registers.AddonRegister;
+import io.github.ph1lou.werewolfapi.registers.CommandRegister;
 import io.github.ph1lou.werewolfapi.registers.IRegisterManager;
 import io.github.ph1lou.werewolfapi.registers.RoleRegister;
+import io.havwila.addonsLG.commands.CommandCroupier;
+import io.havwila.addonsLG.roles.Croupier;
+import io.havwila.addonsLG.roles.Medium;
+import io.havwila.addonsLG.roles.Witness;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.Bukkit;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
@@ -37,8 +42,19 @@ public class Main extends JavaPlugin {
 
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.witness.display", Witness.class)
                     .addLoreKey("werewolf.role.witness.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
+
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.croupier.display", Croupier.class)
+                    .addLoreKey("werewolf.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
+
+            registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier(this))
+                    .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)
+                    .addStateWW(StateGame.GAME).setRequiredPower().addArgNumbers(1));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+    }
+
+    public GetWereWolfAPI getAPI() {
+        return ww;
     }
 }
