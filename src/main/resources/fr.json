@@ -1,30 +1,39 @@
 {
   "werewolf": {
+    "addon": {
+      "havwila": {
+        "name": "Roles de Havwila",
+        "description" : "Roles supplémentaires"
+      }
+    },
     "role": {
       "medium": {
         "display" : "Medium",
-        "description" : "§6LOUP-GAROU §7➽§9 Vous êtes §1Medium§9. Votre objectif est d'éliminer les loups. Par votre lien avec le monde des esprits, vous serez immédiatement informé lorsque un joueur s'apprete a mourir",
+        "description" : "Par votre lien avec le monde des esprits, vous serez immédiatement informé lorsque un joueur s'apprete a mourir",
         "item": "Role par havwila",
         "death_message" : "[§eLG UHC§r] Le joueur §b%s§r est aux portes de la mort"
       },
       "witness": {
         "display" : "Témoin",
-        "description" : "§6LOUP-GAROU §7➽§9 Vous êtes §1Témoin§9. Votre objectif est d'éliminer les loups. A l'annonce de la liste des loups, vous connaitrez le pseudo d'un membre du camp des loups. Toutefois, si celui-ci venait a mourir, vous perdrez 4 coeurs permanents",
+        "description" : "A l'annonce de la liste des loups, vous connaitrez le pseudo d'un coupable, membre du camp des loups. Toutefois, si le coupable venait a mourir, vous perdrez 4 coeurs permanents",
+        "culprit_name" : "Le coupable est §b%s ",
+        "culprit_unknown" : "§rDévoilé dans %s",
+        "culprit_dead": "§rMort",
         "item": "Role par havwila",
         "reveal_culprit" : "[§eLG UHC§r] Le joueur §b%s§r appartient au camp des loup-garous",
-        "culprit_death" : "[§eLG UHC§r] Le loup que vous connaissiez est mort, vous perdez donc 4 coeurs permanents",
-        "change" : "[§eLG UHC§r] L'identité du loup que vous connaissez a changée, il s'agit désormais de §b%s§r"
+        "culprit_death" : "[§eLG UHC§r] Le coupable est mort, vous perdez donc 4 coeurs permanents",
+        "change" : "[§eLG UHC§r] L'identité du coupable a changée, il s'agit désormais de §b%s§r"
       },
       "croupier": {
         "display": "Croupier",
-        "description": "§6LOUP-GAROU §7➽§9 Vous êtes §1Croupier§9. Votre objectif est d'éliminer les loup garous. Chaque jour, vous pourrez séléctionner un joueur qui recevra le pseudo d'un joueur ainsi que 3 roles, parmis lesquels se trouve le role de ce joueur. Le même message sera aussi envoyé à 1 ou 2 autres joueurs",
+        "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur. Le même message sera aussi envoyé à un autre joueur aléatoire",
         "item": "Role par havwila",
         "command": "distribuer",
-        "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un jouer avec §b/ww distribuer§r vous avez §b%s",
+        "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un joueur avec §b/ww distribuer§r vous avez §b%s",
         "not_enough_players": "Il ne reste pas assez de joueurs pour utiliser cette commande",
         "yourself": "Vous ne pouvez pas vous sélectionner vous-même",
         "repeated_target": "Vous ne pouvez sélectionner qu'une seule fois le même joueur",
-        "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s, %s, %s",
+        "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s§r, §b%s§r, §b%s",
         "confirm": "[§eLG UHC§r] Les messages ont été envoyés"
       }
     }

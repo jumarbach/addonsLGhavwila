@@ -1,10 +1,7 @@
 package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.Category;
-import io.github.ph1lou.werewolfapi.enums.StateGame;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.enums.UniversalMaterial;
+import io.github.ph1lou.werewolfapi.enums.*;
 import io.github.ph1lou.werewolfapi.registers.AddonRegister;
 import io.github.ph1lou.werewolfapi.registers.CommandRegister;
 import io.github.ph1lou.werewolfapi.registers.IRegisterManager;
@@ -29,11 +26,11 @@ public class Main extends JavaPlugin {
 
         IRegisterManager registerManager = ww.getRegisterManager();
 
-        String addonKey = "werewolf.addonLGhavwila";
+        String addonKey = "werewolf.addon.havwila.name";
 
         registerManager.registerAddon(new AddonRegister(addonKey, "fr", this)
                 .setItem(new ItemStack(UniversalMaterial.ARROW.getType()))
-                .addLoreKey("werewolf.role.description")
+                .addLoreKey("werewolf.addon.havwila.description")
                 .addAuthors("havwila", UUID.fromString("792945f6-ce44-4039-8382-8652153fe884")));
 
         try {
@@ -44,7 +41,8 @@ public class Main extends JavaPlugin {
                     .addLoreKey("werewolf.role.witness.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
 
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.croupier.display", Croupier.class)
-                    .addLoreKey("werewolf.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
+                    .addLoreKey("werewolf.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
+                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION));
 
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier(this))
                     .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)

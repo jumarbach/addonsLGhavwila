@@ -1,5 +1,6 @@
 package io.havwila.addonsLG.roles;
 
+import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
@@ -26,7 +27,7 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
 
     @Override
     public @NotNull String getDescription() {
-        return game.translate("werewolf.role.croupier.description");
+        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.croupier.description")).build();
     }
 
     @Override

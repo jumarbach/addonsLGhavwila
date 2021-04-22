@@ -7,4 +7,4 @@ Implements two additional roles: Witness and Medium
 
 The Medium gets informed whenever a player enters the judgment status.
 
-The witness knows the name of a wolf from the getgo but loses 4 hearst when that wolf dies.
+The witness knows the name of a wolf from the getgo but loses 4 hearts when that wolf dies.

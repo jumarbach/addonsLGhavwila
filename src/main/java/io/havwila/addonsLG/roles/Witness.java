@@ -1,14 +1,17 @@
 package io.havwila.addonsLG.roles;
 
+import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
+import io.github.ph1lou.werewolfapi.enums.TimersBase;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
 import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
 import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
 import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
+import io.github.ph1lou.werewolfapi.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,7 +32,17 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
 
     @Override
     public @NotNull String getDescription() {
-        return game.translate("werewolf.role.witness.description");
+        //return game.translate("werewolf.role.witness.description");
+        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.witness.description"))
+                .addExtraLines(() -> game.translate("werewolf.role.witness.culprit_name",
+                        affectedPlayer.isEmpty() ? (power ?
+                                game.translate("werewolf.role.witness.culprit_unknown", Utils.conversion(
+                                        game.getConfig().getTimerValue(TimersBase.WEREWOLF_LIST.getKey())))
+                                :
+                                game.translate("werewolf.role.witness.culprit_dead"))
+                                :
+                                affectedPlayer.get(0).getName()))
+                .build();
     }
 
     @Override
