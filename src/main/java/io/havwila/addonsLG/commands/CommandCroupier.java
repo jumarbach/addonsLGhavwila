@@ -59,7 +59,24 @@ public class CommandCroupier implements ICommands {
             return;
         }
 
-        if (((IAffectedPlayers) croupier).getAffectedPlayers().contains(targetWW)) {
+        List<IPlayerWW> targetedPlayers = new ArrayList<>();
+        List<IPlayerWW> exposedPlayers = new ArrayList<>();
+
+        ListIterator<? extends IPlayerWW> affectedPlayers = ((IAffectedPlayers) croupier).getAffectedPlayers().listIterator();
+        while (affectedPlayers.hasNext()) {
+            targetedPlayers.add(affectedPlayers.next());
+            if (!affectedPlayers.hasNext()) {
+                ((IPower) croupier).setPower(false);
+                playerWW.sendMessageWithKey("werewolf.role.croupier.all_exposed");
+                return;
+            }
+            IPlayerWW p = affectedPlayers.next();
+            if (p.isState(StatePlayer.ALIVE)) {
+                exposedPlayers.add(p);
+            }
+        }
+
+        if (targetedPlayers.contains(targetWW)) {
             playerWW.sendMessageWithKey("werewolf.role.croupier.repeated_target");
             return;
         }
@@ -67,24 +84,41 @@ public class CommandCroupier implements ICommands {
 
         ((IPower) croupier).setPower(false);
 
+        allPlayers.removeAll(exposedPlayers);
+        if (allPlayers.isEmpty()) {
+            playerWW.sendMessageWithKey("werewolf.role.croupier.all_exposed");
+            return;
+        }
+
         IPlayerWW pRevealed = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
         allPlayers.remove(pRevealed);
+        ((IAffectedPlayers) croupier).addAffectedPlayer(pRevealed);
+        allPlayers.addAll(exposedPlayers);
+
         IRole r1 = pRevealed.getRole();
         IRole r2 = null;
         IRole r3 = null;
 
-        boolean validRoles = false;
-        while (!validRoles) {
-            IPlayerWW p1 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
-            r2 = p1.getRole();
-            allPlayers.remove(p1);
-            IPlayerWW p2 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
-            r3 = p2.getRole();
-            allPlayers.add(p1);
-            if (!(r1.getCamp().equals(r2.getCamp()) && r1.getCamp().equals(r3.getCamp()))) {
-                validRoles = true;
+        List<IPlayerWW> enemyPlayers = new ArrayList<>();
+        ListIterator<IPlayerWW> iterator = allPlayers.listIterator();
+        while (iterator.hasNext()) {
+            IPlayerWW p = iterator.next();
+            if (!p.getRole().getCamp().equals(pRevealed.getRole().getCamp())) {
+                enemyPlayers.add(p);
             }
         }
+
+        if (enemyPlayers.isEmpty()) {
+            IPlayerWW p = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+            allPlayers.remove(p);
+            r2 = p.getRole();
+        } else {
+            IPlayerWW p = enemyPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+            allPlayers.remove(p);
+            r2 = p.getRole();
+        }
+        r3 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size())).getRole();
+
         List<String> roles = new ArrayList<>(Arrays.asList(
                 r1 instanceof IDisplay ? ((IDisplay) r1).getDisplayRole() : r1.getKey(),
                 r2 instanceof IDisplay ? ((IDisplay) r2).getDisplayRole() : r2.getKey(),
@@ -96,18 +130,13 @@ public class CommandCroupier implements ICommands {
         allPlayers.remove(playerWW);
         allPlayers.remove(targetWW);
 
-        IPlayerWW receiver1 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
-        allPlayers.remove(receiver1);
-        //IPlayerWW receiver2 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+        IPlayerWW receiver = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
 
         targetWW.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
                 game.translate(roles.get(1)), game.translate(roles.get(2)));
-        receiver1.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
+        receiver.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
                 game.translate(roles.get(1)), game.translate(roles.get(2)));
-        /*if (allPlayers.size() + 2 > 10) {
-            receiver2.sendMessageWithKey("werewolf.role.croupier.card", game.translate(pRevealed.getName()), game.translate(roles.get(0)),
-                    game.translate(roles.get(1)), game.translate(roles.get(2)));
-        }*/
+
         playerWW.sendMessageWithKey("werewolf.role.croupier.confirm");
     }
 }

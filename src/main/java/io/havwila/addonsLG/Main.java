@@ -2,10 +2,7 @@ package io.havwila.addonsLG;
 
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.*;
-import io.github.ph1lou.werewolfapi.registers.AddonRegister;
-import io.github.ph1lou.werewolfapi.registers.CommandRegister;
-import io.github.ph1lou.werewolfapi.registers.IRegisterManager;
-import io.github.ph1lou.werewolfapi.registers.RoleRegister;
+import io.github.ph1lou.werewolfapi.registers.*;
 import io.havwila.addonsLG.commands.CommandCroupier;
 import io.havwila.addonsLG.roles.Croupier;
 import io.havwila.addonsLG.roles.Medium;
@@ -47,6 +44,8 @@ public class Main extends JavaPlugin {
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier(this))
                     .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredPower().addArgNumbers(1));
+
+            registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.global.croupier_every_other_day"));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

@@ -20,6 +20,7 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
 
     private final List<IPlayerWW> affectedPlayers = new ArrayList<>();
     private boolean power;
+    private int dayNumber = -8;
 
     public Croupier(WereWolfAPI game, IPlayerWW playerWW, String key) {
         super(game, playerWW, key);
@@ -61,6 +62,12 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
         if (!getPlayerWW().isState(StatePlayer.ALIVE)) {
             return;
         }
+
+        if (game.getConfig().isConfigActive("werewolf.global.croupier_every_other_day") && event.getNumber() == dayNumber + 1) {
+            return;
+        }
+        dayNumber = event.getNumber();
+
         setPower(true);
 
         getPlayerWW().sendMessageWithKey("werewolf.role.croupier.perform",

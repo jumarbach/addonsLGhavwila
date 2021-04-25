@@ -34,8 +34,12 @@
         "yourself": "Vous ne pouvez pas vous sélectionner vous-même",
         "repeated_target": "Vous ne pouvez sélectionner qu'une seule fois le même joueur",
         "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s§r, §b%s§r, §b%s",
-        "confirm": "[§eLG UHC§r] Les messages ont été envoyés"
+        "confirm": "[§eLG UHC§r] Les messages ont été envoyés",
+        "all_exposed": "[§eLG UHC§r] Tous les joueurs encore en vie ont eu leur rôle dévoilé. Vous ne pouvez plus utiliser votre pouvoir"
       }
+    },
+    "global": {
+      "croupier_every_other_day": "Croupier tous les deux jours"
     }
   }
 }
