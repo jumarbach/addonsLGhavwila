@@ -36,6 +36,14 @@
         "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s§r, §b%s§r, §b%s",
         "confirm": "[§eLG UHC§r] Les messages ont été envoyés",
         "all_exposed": "[§eLG UHC§r] Tous les joueurs encore en vie ont eu leur rôle dévoilé. Vous ne pouvez plus utiliser votre pouvoir"
+      },
+      "hunter_havwila": {
+        "display": "Chasseur",
+        "description": "Vous pouvez enqueter sur le cadavre d'un joueur en restant à moins de 20 blocs du cadavre et obtiendrez à chaque minute des informations sur les joueurs à moins de 70 blocs au moment de la mort",
+        "item": "Implémanté par havwila",
+        "clue_player": "[§eLG UHC§r] §b%s§r est mort ici, §b%s§r autres joueurs se trouvaient à proximité lors de sa mort",
+        "clue_role": "[§eLG UHC§r] §b%s§r était §b%s§r. §b%s§r étaient proches de lui lors de sa mort",
+        "clue_nearby": "[§eLG UHC§r] §b%s§r étaient proches de §b%s§r lors de sa mort"
       }
     },
     "global": {

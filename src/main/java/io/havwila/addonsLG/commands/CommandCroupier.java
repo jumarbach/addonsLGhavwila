@@ -113,7 +113,7 @@ public class CommandCroupier implements ICommands {
             allPlayers.remove(p);
             r2 = p.getRole();
         } else {
-            IPlayerWW p = enemyPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+            IPlayerWW p = enemyPlayers.get((int) Math.floor(game.getRandom().nextFloat() * (allPlayers.size() - 1)));
             allPlayers.remove(p);
             r2 = p.getRole();
         }

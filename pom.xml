@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.github.Ph1Lou</groupId>
             <artifactId>WereWolfAPI</artifactId>
-            <version>master-SNAPSHOT</version>
+            <version>d7f4840</version>
         </dependency>
 
     </dependencies>
