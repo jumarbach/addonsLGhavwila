@@ -49,7 +49,10 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.hunter_havwila.description")).build();
+        return new DescriptionBuilder(game, this)
+                .setDescription(() -> game.translate("werewolf.role.hunter_havwila.description"))
+                .setItems(() -> game.translate("werewolf.role.hunter_havwila.items"))
+                .build();
     }
 
     @Override

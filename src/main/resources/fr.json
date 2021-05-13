@@ -41,6 +41,7 @@
         "display": "Chasseur",
         "description": "Vous pouvez enqueter sur le cadavre d'un joueur en restant à moins de 20 blocs du cadavre et obtiendrez à chaque minute des informations sur les joueurs à moins de 70 blocs au moment de la mort",
         "item": "Implémanté par havwila",
+        "items": "1 arc, 64 flèches, un livre power III",
         "clue_player": "[§eLG UHC§r] §b%s§r est mort ici, §b%s§r autres joueurs se trouvaient à proximité lors de sa mort",
         "clue_role": "[§eLG UHC§r] §b%s§r était §b%s§r. §b%s§r étaient proches de lui lors de sa mort",
         "clue_nearby": "[§eLG UHC§r] §b%s§r étaient proches de §b%s§r lors de sa mort"
