@@ -13,12 +13,6 @@ Villageois.
 
 Le témoin apprends le pseudo d'un loup lors de l'annonce de la liste des loups. Si ce loup venait a mourrir, le témoin perd 4 coeurs permanent
 
-### Medium
-
-Villageois.
-
-Le medium est informé de la mort d'un joueur instantanément. Etant donné que cela lui permet de savoir quand quelqu'un ressucite, il est conseillé de l'utiliser dans des compositions où l'infection est un bonus et non une nécéssité pour les loups.
-
 ### Croupier
 
 Villageois.
@@ -33,7 +27,17 @@ Lorsque il reste 1/2/3/4 minutes à moins de 20 blocs de l'endroit où un joueur
 
 Il dispose d'un arc, 64 flèches et un livre power 3.
 
+### Medium (supprimé)
+
+Villageois.
+
+Le medium est informé de la mort d'un joueur instantanément. Etant donné que cela lui permet de savoir quand quelqu'un ressucite, il est conseillé de l'utiliser dans des compositions où l'infection est un bonus et non une nécéssité pour les loups.
+
+Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si vous souhaitez tout de même utiliser le medium, il vous faut retirer les commenentaires qui retirent l'enregistrement du medium dans Main.java et ensuite compiler vous-même le code.
+
 ## Changelog
+
+1.1.3: Retrait Medium, remplacé par le nouveau Chaman
 
 1.1.2: Ajout Chasseur, correction de bugs
 
