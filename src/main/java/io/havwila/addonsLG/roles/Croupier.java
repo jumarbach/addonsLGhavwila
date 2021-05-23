@@ -3,6 +3,7 @@ package io.havwila.addonsLG.roles;
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.enums.TimersBase;
 import io.github.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
@@ -34,6 +35,11 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
     @Override
     public void recoverPower() {
 
+    }
+
+    @Override
+    public Aura getDefaultAura() {
+        return Aura.NEUTRAL;
     }
 
     @Override

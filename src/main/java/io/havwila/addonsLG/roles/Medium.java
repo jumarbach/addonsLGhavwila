@@ -3,6 +3,7 @@ package io.havwila.addonsLG.roles;
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
+import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
 import org.bukkit.event.EventHandler;
@@ -24,6 +25,11 @@ public class Medium extends RoleVillage{
     @Override
     public void recoverPower() {
 
+    }
+
+    @Override
+    public Aura getDefaultAura() {
+        return Aura.NEUTRAL;
     }
 
     @EventHandler
