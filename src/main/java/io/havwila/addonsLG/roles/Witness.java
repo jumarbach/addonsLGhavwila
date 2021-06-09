@@ -5,7 +5,7 @@ import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.enums.TimersBase;
+import io.github.ph1lou.werewolfapi.enums.TimerBase;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
 import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
@@ -34,11 +34,11 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
     @Override
     public @NotNull String getDescription() {
         //return game.translate("werewolf.role.witness.description");
-        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.witness.description"))
-                .addExtraLines(() -> game.translate("werewolf.role.witness.culprit_name",
+        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.witness.description"))
+                .addExtraLines(game.translate("werewolf.role.witness.culprit_name",
                         affectedPlayer.isEmpty() ? (power ?
                                 game.translate("werewolf.role.witness.culprit_unknown", Utils.conversion(
-                                        game.getConfig().getTimerValue(TimersBase.WEREWOLF_LIST.getKey())))
+                                        game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST.getKey())))
                                 :
                                 game.translate("werewolf.role.witness.culprit_dead"))
                                 :
@@ -90,7 +90,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
     public void onWerewolfListEvent(WereWolfListEvent event){
 
         List<IPlayerWW> wolves = new ArrayList<>();
-        for (IPlayerWW p : game.getPlayerWW()) {
+        for (IPlayerWW p : game.getPlayersWW()) {
 
             if(p.isState(StatePlayer.ALIVE) && p.getRole().isWereWolf()) {
                 wolves.add(p);

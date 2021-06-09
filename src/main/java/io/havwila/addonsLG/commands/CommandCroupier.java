@@ -1,6 +1,6 @@
 package io.havwila.addonsLG.commands;
 
-import io.github.ph1lou.werewolfapi.ICommands;
+import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
@@ -12,27 +12,19 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CommandCroupier implements ICommands {
-
-    private final Main main;
-
-    public CommandCroupier(Main main) {
-        this.main = main;
-    }
+public class CommandCroupier implements ICommand {
 
     @Override
-    public void execute(Player player, String[] args) {
-
-        WereWolfAPI game = main.getAPI().getWereWolfAPI();
+    public void execute(WereWolfAPI game, Player player, String[] args) {
 
         UUID uuid = player.getUniqueId();
-        IPlayerWW playerWW = game.getPlayerWW(uuid);
+        IPlayerWW playerWW = game.getPlayerWW(uuid).orElse(null);
 
         if (playerWW == null) {
             return;
         }
 
-        List<IPlayerWW> allPlayers = game.getPlayerWW().stream().filter(p -> p.isState(StatePlayer.ALIVE)).collect(Collectors.toList());
+        List<IPlayerWW> allPlayers = game.getPlayersWW().stream().filter(p -> p.isState(StatePlayer.ALIVE)).collect(Collectors.toList());
 
         if (allPlayers.size() < 5) {
             playerWW.sendMessageWithKey("werewolf.role.croupier.not_enough_players");
@@ -47,7 +39,7 @@ public class CommandCroupier implements ICommands {
         }
 
         UUID argUUID = playerArg.getUniqueId();
-        IPlayerWW targetWW = game.getPlayerWW(argUUID);
+        IPlayerWW targetWW = game.getPlayerWW(argUUID).orElse(null);
 
         if (targetWW == null || !targetWW.isState(StatePlayer.ALIVE)) {
             playerWW.sendMessageWithKey("werewolf.check.player_not_found");

@@ -51,8 +51,8 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
     @Override
     public @NotNull String getDescription() {
         return new DescriptionBuilder(game, this)
-                .setDescription(() -> game.translate("werewolf.role.hunter_havwila.description"))
-                .setItems(() -> game.translate("werewolf.role.hunter_havwila.items"))
+                .setDescription(game.translate("werewolf.role.hunter_havwila.description"))
+                .setItems(game.translate("werewolf.role.hunter_havwila.items"))
                 .build();
     }
 
@@ -92,6 +92,8 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
                 .map(Entity::getUniqueId)
                 .map(game::getPlayerWW)
                 .filter(Objects::nonNull)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .filter(player -> player.isState(StatePlayer.ALIVE))
                 .filter(player -> !player.equals(playerWW))
                 .collect(Collectors.toSet());

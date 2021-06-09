@@ -45,6 +45,18 @@
         "clue_player": "[§eLG UHC§r] §b%s§r est mort ici, §b%s§r autres joueurs se trouvaient à proximité lors de sa mort",
         "clue_role": "[§eLG UHC§r] §b%s§r était §b%s§r. §b%s§r étaient proches de lui lors de sa mort",
         "clue_nearby": "[§eLG UHC§r] §b%s§r étaient proches de §b%s§r lors de sa mort"
+      },
+      "romulus_remus": {
+        "display": "Romulus ou Remus",
+        "description_naive": "Ayant laissé votre mère adoptive derrière vous, vous et votre frère ne savez pas quelle est votre place dans le monde. Pour l'instant, vous pouvez gagner avec votre frère et votre mère adoptive, mais cela pourrait changer si l'un de vous meurt... N'ayant vu votre mère que sous sa forme louve, vous ne connaissez que son role. Si vous passez a coté de votre mère, elle saura 5 minutes plus tard qu'elle a rencontré un de ces fils",
+        "power_naive": "Resistance lorsque vous êtes à plus de 50 blocs de votre frère",
+        "mother_role": "Votre mère est un &role&",
+        "brother": "Votre frère est &name&",
+        "description_romulus": "Vous êtes Romulus. Vous obtiendrez un effet de force permanent si vous parvenez à tuer votre frère",
+        "description_remus": "Vous êtes Remus. Vous obtiendrez un effet de force permanent si vous tuez votre fère",
+        "mother_message": "[§eLG UHC§r] Vous sentez l'odeur d'un de vos fils adoptifs. Vous étiez proches de lui il y a 2 minutes",
+        "killed_brother_strength": "[§eLG UHC§r] Vous êtes parvenu à tuer votre frère. Vous avez désormais §4Force pour le restant de la partie",
+        "killed_brother_weakness": "[§eLG UHC§r] Vous avez tué votre frère. Traumatisé par cet acte, vous aurez désormais §bFaiblesse§r pour le restant de la game"
       }
     },
     "global": {

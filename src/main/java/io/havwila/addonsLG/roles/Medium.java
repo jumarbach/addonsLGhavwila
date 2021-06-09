@@ -19,7 +19,7 @@ public class Medium extends RoleVillage{
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.medium.description")).build();
+        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.medium.description")).build();
     }
 
     @Override

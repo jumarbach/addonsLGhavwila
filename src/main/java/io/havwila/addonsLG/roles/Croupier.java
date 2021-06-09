@@ -5,7 +5,7 @@ import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.enums.TimersBase;
+import io.github.ph1lou.werewolfapi.enums.TimerBase;
 import io.github.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
 import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
@@ -29,7 +29,7 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription(() -> game.translate("werewolf.role.croupier.description")).build();
+        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.croupier.description")).build();
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Croupier  extends RoleVillage implements IAffectedPlayers, IPower {
         setPower(true);
 
         getPlayerWW().sendMessageWithKey("werewolf.role.croupier.perform",
-                Utils.conversion(game.getConfig().getTimerValue(TimersBase.POWER_DURATION.getKey())));
+                Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey())));
     }
 
     @Override

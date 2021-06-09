@@ -6,7 +6,7 @@
 
     <groupId>io.havwila.addonsLG</groupId>
     <artifactId>addonsLGhavwila</artifactId>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.github.Ph1Lou</groupId>
             <artifactId>WereWolfAPI</artifactId>
-            <version>master-SNAPSHOT</version>
+            <version>5d0fdc4</version>
         </dependency>
 
     </dependencies>
