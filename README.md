@@ -37,6 +37,8 @@ Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si v
 
 ## Changelog
 
+1.1.5: Update API
+
 1.1.4: Update API, compatible avec l'oracle
 
 1.1.3: Retrait Medium, remplacé par le nouveau Chaman
