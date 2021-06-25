@@ -122,12 +122,11 @@ public class CommandCroupier implements ICommand {
         allPlayers.remove(playerWW);
         allPlayers.remove(targetWW);
 
-        IPlayerWW receiver = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+        //IPlayerWW receiver = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
 
         targetWW.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
                 game.translate(roles.get(1)), game.translate(roles.get(2)));
-        receiver.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
-                game.translate(roles.get(1)), game.translate(roles.get(2)));
+        //receiver.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),game.translate(roles.get(1)), game.translate(roles.get(2)));
 
         playerWW.sendMessageWithKey("werewolf.role.croupier.confirm");
     }

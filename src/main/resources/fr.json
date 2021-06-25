@@ -26,7 +26,7 @@
       },
       "croupier": {
         "display": "Croupier",
-        "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur. Le même message sera aussi envoyé à un autre joueur aléatoire",
+        "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur.",
         "item": "Role par havwila",
         "command": "distribuer",
         "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un joueur avec §b/ww distribuer§r vous avez §b%s",
