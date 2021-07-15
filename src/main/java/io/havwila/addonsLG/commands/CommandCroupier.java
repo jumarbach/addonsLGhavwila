@@ -82,7 +82,7 @@ public class CommandCroupier implements ICommand {
             return;
         }
 
-        IPlayerWW pRevealed = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+        IPlayerWW pRevealed = allPlayers.get(game.getRandom().nextInt(allPlayers.size()));
         allPlayers.remove(pRevealed);
         ((IAffectedPlayers) croupier).addAffectedPlayer(pRevealed);
         allPlayers.addAll(exposedPlayers);
@@ -100,21 +100,20 @@ public class CommandCroupier implements ICommand {
             }
         }
 
+        IPlayerWW p;
         if (enemyPlayers.isEmpty()) {
-            IPlayerWW p = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
-            allPlayers.remove(p);
-            r2 = p.getRole();
+            p = allPlayers.get(game.getRandom().nextInt(allPlayers.size()));
         } else {
-            IPlayerWW p = enemyPlayers.get((int) Math.floor(game.getRandom().nextFloat() * (allPlayers.size() - 1)));
-            allPlayers.remove(p);
-            r2 = p.getRole();
+            p = enemyPlayers.get(game.getRandom().nextInt(enemyPlayers.size()));
         }
-        r3 = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size())).getRole();
+        allPlayers.remove(p);
+        r2 = p.getRole();
+        r3 = allPlayers.get(game.getRandom().nextInt(allPlayers.size())).getRole();
 
         List<String> roles = new ArrayList<>(Arrays.asList(
-                r1 instanceof IDisplay ? ((IDisplay) r1).getDisplayRole() : r1.getKey(),
-                r2 instanceof IDisplay ? ((IDisplay) r2).getDisplayRole() : r2.getKey(),
-                r3 instanceof IDisplay ? ((IDisplay) r3).getDisplayRole() : r3.getKey()));
+                r1.getDisplayRole(),
+                r2.getDisplayRole(),
+                r3.getDisplayRole()));
 
         Collections.shuffle(roles, game.getRandom());
 
@@ -122,7 +121,7 @@ public class CommandCroupier implements ICommand {
         allPlayers.remove(playerWW);
         allPlayers.remove(targetWW);
 
-        IPlayerWW receiver = allPlayers.get((int) Math.floor(game.getRandom().nextFloat() * allPlayers.size()));
+        IPlayerWW receiver = allPlayers.get(game.getRandom().nextInt(allPlayers.size()));
 
         targetWW.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
                 game.translate(roles.get(1)), game.translate(roles.get(2)));
