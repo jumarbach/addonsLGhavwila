@@ -49,6 +49,8 @@ Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si v
 
 1.2.0: Ajout Romulus Ou Remus
 
+1.1.6: Bugfix Croupier, LTS release 1.1.7 du plugin principal
+
 1.1.5: Update API
 
 1.1.4: Update API, compatible avec l'oracle
