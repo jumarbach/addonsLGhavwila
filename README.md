@@ -27,6 +27,16 @@ Lorsque il reste 1/2/3/4 minutes à moins de 20 blocs de l'endroit où un joueur
 
 Il dispose d'un arc, 64 flèches et un livre power 3.
 
+### Romulus ou Remus
+
+Neutre, aura neutre, camp de façade Villageois
+
+Au début, 2 frères qui se connaissant dès l'annonce des la liste des loups, qui ont une flèche indiquant la position de l'autre et on résistance quand ils sont éloignés de plus de 60 blocs. Ils connaissant aussi le rôle exacte de leur mère adoptive, un loup. S'ils passent à coté de leur mère adoptive, celle-ci recevra 2 minutes plus tard un message lui indiquant qu'un des ses fils est passé à coté d'elle. Ils peuvent gagner en famille à trois.
+
+Si la mère meurt, les deux frères apprennent s'ils sont Romulus ou Remus. Romulus est villageois, Remus est loup, mais sans apparaitre dans la liste ou la connaitre. S'ils parviennent à tuer l'autre frère, ils obtiennent un effet de force permanent. Remus obtient en plus de ça la liste des loups et apparait dans celle-ci. Si la mère est morte de la main de Remus, celui-ci doit gagner seul tel un LGB.
+
+Si on des deux frères meurt avant la mère, l'autre aura à gagner seul sans aucun pouvoir.
+
 ### Medium (supprimé)
 
 Villageois, aura neutre
@@ -36,6 +46,10 @@ Le medium est informé de la mort d'un joueur instantanément. Etant donné que 
 Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si vous souhaitez tout de même utiliser le medium, il vous faut retirer les commenentaires qui retirent l'enregistrement du medium dans Main.java et ensuite compiler vous-même le code.
 
 ## Changelog
+
+1.2.0: Ajout Romulus Ou Remus
+
+1.1.5: Update API
 
 1.1.4: Update API, compatible avec l'oracle
 

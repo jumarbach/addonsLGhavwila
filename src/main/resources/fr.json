@@ -26,7 +26,7 @@
       },
       "croupier": {
         "display": "Croupier",
-        "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur. Le même message sera aussi envoyé à un autre joueur aléatoire",
+        "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur.",
         "item": "Role par havwila",
         "command": "distribuer",
         "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un joueur avec §b/ww distribuer§r vous avez §b%s",
@@ -48,15 +48,24 @@
       },
       "romulus_remus": {
         "display": "Romulus ou Remus",
-        "description_naive": "Ayant laissé votre mère adoptive derrière vous, vous et votre frère ne savez pas quelle est votre place dans le monde. Pour l'instant, vous pouvez gagner avec votre frère et votre mère adoptive, mais cela pourrait changer si l'un de vous meurt... N'ayant vu votre mère que sous sa forme louve, vous ne connaissez que son role. Si vous passez a coté de votre mère, elle saura 5 minutes plus tard qu'elle a rencontré un de ces fils",
+        "item": "Role par havwila, par paires de 2",
+        "description_naive": "Pour l'instant, vous pouvez gagner avec votre frère et votre mère adoptive. Toutefois, si l'un de vous trois meurt, votre objectif changera. Vous ne connaissez que le rôle de votre mère. Si vous passez a coté d'elle, elle saura 5 minutes plus tard qu'elle a rencontré un de ces fils. Vous obtiendrez un effet de faiblesse si vous tuez votre frère. Les rôles à info vous voient comme étant dans le camps des villageois",
         "power_naive": "Resistance lorsque vous êtes à plus de 50 blocs de votre frère",
-        "mother_role": "Votre mère est un &role&",
-        "brother": "Votre frère est &name&",
+        "mother_role": "Votre mère est un §b&role&§r\n",
+        "brother_name": "Votre frère est §b&name&§r\n",
+        "description_neutral": "Sans frère, vous êtes condamné à jouer seul sans accéder au potentiel que vous aviez",
+        "weakness": "Faiblesse permanente\n",
         "description_romulus": "Vous êtes Romulus. Vous obtiendrez un effet de force permanent si vous parvenez à tuer votre frère",
-        "description_remus": "Vous êtes Remus. Vous obtiendrez un effet de force permanent si vous tuez votre fère",
+        "description_remus": "Vous êtes Remus. Vous obtiendrez un effet de force permanent si vous tuez votre frère. Les rôles à info vous voient comme étant dans le camp des villageois. Les loups vous verront avec eux dès que vous aurez tué votre frère",
+        "strength": "Force permanente\n",
         "mother_message": "[§eLG UHC§r] Vous sentez l'odeur d'un de vos fils adoptifs. Vous étiez proches de lui il y a 2 minutes",
-        "killed_brother_strength": "[§eLG UHC§r] Vous êtes parvenu à tuer votre frère. Vous avez désormais §4Force pour le restant de la partie",
-        "killed_brother_weakness": "[§eLG UHC§r] Vous avez tué votre frère. Traumatisé par cet acte, vous aurez désormais §bFaiblesse§r pour le restant de la game"
+        "killed_brother_strength": "[§eLG UHC§r] Vous êtes parvenu à tuer votre frère. Vous avez désormais §4Force§r pour le restant de la partie",
+        "killed_brother_weakness": "[§eLG UHC§r] Vous avez tué votre frère. Traumatisé par cet acte, vous aurez désormais §bFaiblesse§r pour le restant de la game et devez gagner seul",
+        "brother_died": "[§eLG UHC§r] Votre frère est mort. Vous êtes condamné à gagner seul sans aucun pouvoir",
+        "mother_dead": "[§eLG UHC§r] Votre mère est morte. Votre rôle a changé. §b/ww role§r pour en savoir plus.",
+        "slayed_mother": "[§eLG UHC§r] Vous avez tué votre mère. Enragé, il vous faut désormais gagner seul. §b/ww role§r pour en savoir plus.",
+        "family_change": "[§eLG UHC§r] Un membre de votre famille a changé. §b/ww role§r pour en savoir plus.",
+        "family_init": "[§eLG UHC§r] Vous connaissez désormais votre famille. §b/ww role§r pour en savoir plus."
       }
     },
     "global": {

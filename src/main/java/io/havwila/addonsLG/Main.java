@@ -4,10 +4,7 @@ import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.*;
 import io.github.ph1lou.werewolfapi.registers.*;
 import io.havwila.addonsLG.commands.CommandCroupier;
-import io.havwila.addonsLG.roles.Croupier;
-import io.havwila.addonsLG.roles.Hunter;
-import io.havwila.addonsLG.roles.Medium;
-import io.havwila.addonsLG.roles.Witness;
+import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,6 +42,11 @@ public class Main extends JavaPlugin {
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.hunter_havwila.display", Hunter.class)
                     .addLoreKey("werewolf.role.hunter_havwila.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
                     .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION));
+
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.romulus_remus.display", RomulusRemus.class)
+                    .addLoreKey("werewolf.role.romulus_remus.item")
+                    .addCategory(Category.ADDONS)
+                    .addCategory(Category.NEUTRAL).setRequireDouble());
 
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier())
                     .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)
