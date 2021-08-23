@@ -8,6 +8,7 @@ import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.enums.TimerBase;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
+import io.github.ph1lou.werewolfapi.events.random_events.SwapEvent;
 import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
 import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
@@ -16,6 +17,7 @@ import io.github.ph1lou.werewolfapi.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -147,6 +149,33 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
         }
         else {
             getPlayerWW().removePlayerMaxHealth(8);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onSwap(SwapEvent event) {
+        if (getPlayerWW().isState(StatePlayer.DEATH)) return;
+
+        if (event.isCancelled()) return;
+
+        if (!power) return;
+
+        if (affectedPlayer.isEmpty()) return;
+
+        if (affectedPlayer.contains(event.getPlayerWW1())) {
+            removeAffectedPlayer(event.getPlayerWW1());
+            addAffectedPlayer(event.getPlayerWW2());
+
+            if (isAbilityEnabled()) {
+                getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", event.getPlayerWW2().getName());
+            }
+        } else if (affectedPlayer.contains(event.getPlayerWW2())) {
+            removeAffectedPlayer(event.getPlayerWW2());
+            addAffectedPlayer(event.getPlayerWW1());
+
+            if (isAbilityEnabled()) {
+                getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", event.getPlayerWW1().getName());
+            }
         }
     }
 }

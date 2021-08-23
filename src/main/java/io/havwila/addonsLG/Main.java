@@ -50,7 +50,7 @@ public class Main extends JavaPlugin {
 
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier())
                     .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)
-                    .addStateWW(StateGame.GAME).setRequiredPower().addArgNumbers(1));
+                    .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
 
             registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.global.croupier_every_other_day"));
         } catch (NoSuchMethodException e) {

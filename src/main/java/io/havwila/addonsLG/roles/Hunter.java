@@ -75,7 +75,6 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
         IPlayerWW playerWW = event.getPlayerWW();
 
         if (playerWW.equals(getPlayerWW())) {
-            //TODO: shoot someone
             return;
         }
 
@@ -110,6 +109,8 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
         if (!getPlayerWW().isState(StatePlayer.ALIVE)) {
             return;
         }
+        if (!isAbilityEnabled()) return;
+
         Location location = getPlayerWW().getLocation();
         double distanceOrigin = location.length();
         clues.forEach(clue -> {

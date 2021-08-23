@@ -168,7 +168,9 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
                 if (getPlayerWW().equals(iPlayerWW)) {
                     killedBrother = true;
                     if (isTransformed) {
-                        getPlayerWW().addPotionModifier(PotionModifier.add(PotionEffectType.INCREASE_DAMAGE, "romulus_remus_strength"));
+                        if (isAbilityEnabled()) {
+                            getPlayerWW().addPotionModifier(PotionModifier.add(PotionEffectType.INCREASE_DAMAGE, "romulus_remus_strength"));
+                        }
                         getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.killed_brother_strength");
                         if (!isRomulus) {
                             if (!super.isWereWolf()) {
@@ -294,10 +296,9 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
     @Override
     public void recoverPotionEffect() {
-        if (isTransformed && killedBrother) {
+
+        if (isTransformed && killedBrother && isAbilityEnabled()) {
             getPlayerWW().addPotionModifier(PotionModifier.add(PotionEffectType.INCREASE_DAMAGE, "romulus_remus_strength"));
-        } else if (super.isWereWolf()) {
-            super.recoverPotionEffect();
         }
 
         if (!isTransformed && staysNeutral && killedBrother) {
@@ -317,6 +318,8 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         if(!this.getPlayerWW().isState(StatePlayer.ALIVE)){
             return;
         }
+
+        if (!isAbilityEnabled()) return;
 
         if(!this.isWereWolf()) return;
 
@@ -346,6 +349,8 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         if (isTransformed || staysNeutral) {
             return;
         }
+
+        if (!isAbilityEnabled()) return;
 
         StringBuilder stringBuilder = new StringBuilder(event.getActionBar());
 
@@ -425,7 +430,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         Location location = this.getPlayerWW().getLocation();
 
-        if (brother != null && !isTransformed && !staysNeutral && brother.isState(StatePlayer.ALIVE)) {
+        if (brother != null && !isTransformed && !staysNeutral && brother.isState(StatePlayer.ALIVE) && isAbilityEnabled()) {
             boolean recoverResistance = brother.getLocation().distance(location) > 60;
 
             this.getPlayerWW().addPotionModifier(PotionModifier.remove(PotionEffectType.DAMAGE_RESISTANCE, "romulus_remus_resistance"));
@@ -448,5 +453,16 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
             }
         }
         counter++;
+    }
+
+    @Override
+    public void disableAbilities() {
+        super.disableAbilities();
+
+        if(!this.getPlayerWW().isState(StatePlayer.ALIVE)){
+            return;
+        }
+
+        this.getPlayerWW().addPotionModifier(PotionModifier.remove(PotionEffectType.DAMAGE_RESISTANCE,"romulus_remus_strength"));
     }
 }

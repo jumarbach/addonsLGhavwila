@@ -4,6 +4,7 @@ import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.enums.Aura;
+import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
 import org.bukkit.event.EventHandler;
@@ -34,6 +35,10 @@ public class Medium extends RoleVillage{
 
     @EventHandler
     public void onFirstDeathEvent(FirstDeathEvent event){
+
+        if (getPlayerWW().isState(StatePlayer.DEATH)) return;
+
+        if (!isAbilityEnabled()) return;
 
         IPlayerWW p = event.getPlayerWW();
         if(Bukkit.getPlayer(getPlayerUUID()) != null){
