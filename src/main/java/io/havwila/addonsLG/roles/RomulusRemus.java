@@ -421,6 +421,10 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
     @Override
     public void second() {
 
+        counter++;
+        if (counter % 6 != 0) return;
+        counter = 0;
+
         if (!this.getPlayerWW().isState(StatePlayer.ALIVE)) {
             return;
         }
@@ -443,16 +447,11 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
             return;
         }
 
-        if (counter % 10 == 0) {
-            counter = 0;
-            if (mother.getLocation().distance(location) < 20) {
-                BukkitUtils.scheduleSyncDelayedTask(() -> {
-                    mother.sendMessageWithKey("werewolf.role.romulus_remus.mother_message");
-                }, 20 * 60 * 2);
-                metMother = true;
-            }
+        if (mother.getLocation().distance(location) < 20) {
+            BukkitUtils.scheduleSyncDelayedTask(() -> {
+                mother.sendMessageWithKey("werewolf.role.romulus_remus.mother_message"); }, 20 * 60 * 2);
+            metMother = true;
         }
-        counter++;
     }
 
     @Override

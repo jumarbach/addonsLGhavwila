@@ -66,6 +66,39 @@
         "slayed_mother": "[§eLG UHC§r] Vous avez tué votre mère. Enragé, il vous faut désormais gagner seul. §b/ww role§r pour en savoir plus.",
         "family_change": "[§eLG UHC§r] Un membre de votre famille a changé. §b/ww role§r pour en savoir plus.",
         "family_init": "[§eLG UHC§r] Vous connaissez désormais votre famille. §b/ww role§r pour en savoir plus."
+      },
+      "inquisitor": {
+        "display": "Inquisiteur",
+        "item": "Role par havwila",
+        "description": "Au début du jour, vous pouvez châtier un joueur avec la commande §b/ww chatiment§r. Si le joueur est un loup, il perd ses pouvoirs et effets. Si le joueur ciblé n'est pas un loup, vous perdez votre pouvoir",
+        "smite_message": "[§eLG UHC§r] Châtiez un joueur avec §b/ww chatiment§r, vous avez §b%s",
+        "command": "chatiment",
+        "smite_disable": "[§cLG UHC§r] L'inquisiteur vous a châtié. Vous perdez vos effets et pouvoirs définitivement",
+        "smite_success": "[§eLG UHC§r] Votre cible est un loup, il perd donc définitivement tous ses pouvoirs et effets",
+        "smite_fail": "[§eLG UHC§r] Le joueur ciblé n'est pas un loup. Vous perdez donc votre pouvoir définitivement"
+      },
+      "auramancer": {
+        "display": "Auramancien",
+        "item": "Role par havwila",
+        "description": "Vous possédez des effets différents en fonction de l'aura que vous avez. Une fois dans la partie, vous pouvez utiliser la commande §b/ww auraflare§r. Lorsque vous êtes affectés par un modificateur d'aura, votre aura devient l'aura du modificateur. Quand vous tuez un joueur avec une aura &dark&§r, votre aura s'améliore d'un cran. S'il n'y a plus d'autre joueur avec une aura &light&§r, votre aura ne changera plus jusqu'à la fin de la partie",
+        "passive_light": "§bPassif§r: Vous disposez de l'effet resistance tant que vous êtes proches (20 blocs) d'un autre joueur à l'aura &light&§r\n",
+        "passive_neutral": "§bPassif§r: Lorsque un joueur est tué proche de vous (50 blocs), vous apprenez quelles sont les auras du mort et du tueur\n",
+        "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura §light§§\n",
+        "active_light": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tout les joueurs proches avec une aura &light&§r obtiennent §bspeed§r pendant 2 minutes\n",
+        "active_neutral": "§eActif§r: Vous affiche le nombre de joueurs avec chaque aura se trouvant proches (50 blocs) de vous. Tous les joueurs avec une aura &neutral& obtiennent une aura &light&§r\n",
+        "active_dark": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tous les joueurs avec une aura &light&§r ont §4slowness§r pour 2 minutes\n",
+        "aura_status": "Votre aura est &aura&§r\n",
+        "aura_sense": "[§cLG UHC§r] Un joueur proche avec une aura &auraVictim& a été tué par un joueur avec une aura &auraKiller&",
+        "aura_kill": "[§eLG UHC§r] Vous avez tué un joueur avec une aura &aura_dead&. Votre aura est désormais &aura_new&",
+        "aura_change": "[§eLG UHC§r] Votre aura a changé. Elle est désormais &aura&",
+        "aura_locked": "[§eLG UHC§r] Plus aucun autre joueur ne possède une aura &aura_light&§r. Vous gardez votre aura &aura& pour le restant de la partie",
+        "command": "auraflare",
+        "not_enough_players": "[§eLG UHC§r] Il faut aux moins §b2§r joueurs proches",
+        "command_light_self": "[§eLG UHC§r] Vous avez donné un effet de speed à tous les joueurs proches avec une aura &aura&",
+        "command_light_others": "[§eLG UHC§r] Grâce à l'auromancien, vous obtenez speed pour 2 minutes",
+        "command_neutral": "[§eLG UHC§r] &light_p& joueurs avec une aura &light_a&§r, &neutral_p& joueurs avec une aura &neutral_a&§r et &dark_p& joueurs avec une aura &aura_d&§r se trouvent proches de vous",
+        "command_dark_self": "[§eLG UHC§r] Tous les joueurs avec une aura &aura_light& proches ont obtenu lenteur pour 2 minutes",
+        "command_dark_others": "[§cLG UHC§r] L'auramancien vous a infligé un effet de lenteur pour 2 minutes"
       }
     },
     "global": {
