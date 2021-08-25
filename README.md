@@ -7,6 +7,33 @@ depends on https://github.com/Ph1Lou/WereWolfAPI
 
 Ajoute les roles suivants:
 
+### Inquisiteur
+
+Villageois, aura neutre
+
+Chaque jour, il peut désactiver les capacités d'un loup se son choix pour le restant de la game. 
+Si il cible un joueur qui n'est pas loup, il perd son pouvoir pour le reste de la game.
+
+### Auramancien
+
+Villageois, aura neutre
+
+Dispose de pouvoirs passifs et actif différents en fonction de son aura.
+Lorsque il est affecté par un modificateur d'aura, son aura devient l'aura du modificateur. Lorsque il tue un joueur avec une aura sombre, son aura s'améliore d'un cran (Sombre->neutre->Lumineuse).
+Lorsque un joueur meurt, s'il ne reste plus de joueur avec une aura lumineuse en dehors de l'auramancien, celui-ci ne change plus d'aura pour le restant de la partie.
+
+Le pouvoir actif s'utilise au moyen de la commande /ww auraflare, utilisable une fois
+
+##### Passifs
+* lumineux: A resistance lorsque il est à moins de 20 blocs d'un joueur lumineux
+* neutre: Lorsque un joueur est tué proche de lui, il est informé de l'aura du tueur et du tué
+* sombre: Doit gagner seul et inflige des dégats de force aux joueurs lumineux
+
+##### Actifs (50 blocs de rayon)
+* lumineux: Purifie les auras des joueurs proches des kills qu'ils ont faits, puis donne speed pour 2 minutes à tous les joueurs avec une aura lumineuse
+* neutre: Donne le nombre d'auras de chaque type sur les joueurs proches. Les joueurs avec une aura neutre obtiennent une aura lumineuse
+* sombre: Purifie les auras des joueurs proches des kills quîls ont faits, puis donne slowness pour 2 minutes à tous les joueurs avec une aura lumineuse
+
 ### Témoin
 
 Villageois, aura lumineuse
@@ -47,6 +74,8 @@ Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si v
 
 ## Changelog
 
+1.2.1: Ajout Inquisiteur et Auramancien (Compatible avec la 1.8 une fois que la snapshot sort)
+
 1.2.0: Ajout Romulus Ou Remus
 
 1.1.6: Bugfix Croupier, LTS release 1.1.7 du plugin principal
@@ -62,5 +91,11 @@ Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si v
 1.1.1: Correction de bugs
 
 1.1.0: Ajout Croupier
+
+## Discord
+
+Si vous souhaitez proposer de nouveaux rôles ou des modifications des roles ci dessus, vous pouvez le faire ici:
+
+https://discord.gg/CEY32FGJSG
 
 
