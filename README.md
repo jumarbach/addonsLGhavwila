@@ -22,7 +22,7 @@ Dispose de pouvoirs passifs et actif différents en fonction de son aura.
 Lorsque il est affecté par un modificateur d'aura, son aura devient l'aura du modificateur. Lorsque il tue un joueur avec une aura sombre, son aura s'améliore d'un cran (Sombre->neutre->Lumineuse).
 Lorsque un joueur meurt, s'il ne reste plus de joueur avec une aura lumineuse en dehors de l'auramancien, celui-ci ne change plus d'aura pour le restant de la partie.
 
-Le pouvoir actif s'utilise au moyen de la commande /ww auraflare, utilisable une fois
+Le pouvoir actif s'utilise au moyen de la commande /ww auraflare, utilisable une fois. Elle peut être réutilisée une fois que l'aura est fixée.
 
 ##### Passifs
 * lumineux: A resistance lorsque il est à moins de 20 blocs d'un joueur lumineux
