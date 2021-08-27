@@ -225,6 +225,7 @@ public class Auramancer extends Role implements IPower {
             getPlayerWW().sendMessageWithKey("werewolf.role.auramancer.aura_locked",
                     Formatter.format("&aura&", currentAura.getChatColor() + game.translate(currentAura.getKey())),
                             Formatter.format("&aura_light&", Aura.LIGHT.getChatColor() + game.translate(Aura.LIGHT.getKey())));
+            this.setPower(true);
         }
     }
 
