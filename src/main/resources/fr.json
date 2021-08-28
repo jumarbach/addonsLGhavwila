@@ -83,7 +83,7 @@
         "description": "Vous possédez des effets différents en fonction de l'aura que vous avez. Une fois dans la partie, vous pouvez utiliser la commande §b/ww auraflare§r. Celle-ci est réutilisable après  Lorsque vous êtes affectés par un modificateur d'aura, votre aura devient l'aura du modificateur. Quand vous tuez un joueur avec une aura &dark&§r, votre aura s'améliore d'un cran. S'il n'y a plus d'autre joueur avec une aura &light&§r, votre aura ne changera plus jusqu'à la fin de la partie",
         "passive_light": "§bPassif§r: Vous disposez de l'effet resistance tant que vous êtes proches (20 blocs) d'un autre joueur à l'aura &light&§r\n",
         "passive_neutral": "§bPassif§r: Lorsque un joueur est tué proche de vous (50 blocs), vous apprenez quelles sont les auras du mort et du tueur\n",
-        "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura §light§§\n",
+        "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura &light&§\n",
         "active_light": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tout les joueurs proches avec une aura &light&§r obtiennent §bspeed§r pendant 2 minutes\n",
         "active_neutral": "§eActif§r: Vous affiche le nombre de joueurs avec chaque aura se trouvant proches (50 blocs) de vous. Tous les joueurs avec une aura &neutral&§r obtiennent une aura &light&§r\n",
         "active_dark": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tous les joueurs avec une aura &light&§r ont §4slowness§r pour 2 minutes\n",
