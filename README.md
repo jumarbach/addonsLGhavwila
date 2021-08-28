@@ -38,7 +38,7 @@ Le pouvoir actif s'utilise au moyen de la commande /ww auraflare, utilisable une
 
 Villageois, aura lumineuse
 
-Le témoin apprends le pseudo d'un loup lors de l'annonce de la liste des loups. Si ce loup venait a mourrir, le témoin perd 4 coeurs permanent
+Le témoin apprends le pseudo d'un loup lors de l'annonce de la liste des loups. Si ce loup venait a mourrir, le témoin perd 4 coeurs permanent. De plus, il inflige 30% de dégats en moins au loup qu'il connait.
 
 ### Croupier
 

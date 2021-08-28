@@ -15,8 +15,8 @@
       },
       "witness": {
         "display" : "Témoin",
-        "description" : "A l'annonce de la liste des loups, vous connaitrez le pseudo d'un coupable, membre du camp des loups. Toutefois, si le coupable venait a mourir, vous perdrez 4 coeurs permanents",
-        "culprit_name" : "Le coupable est §b%s ",
+        "description" : "A l'annonce de la liste des loups, vous connaitrez le pseudo d'un coupable, membre du camp des loups. Toutefois, si le coupable venait a mourir, vous perdrez 4 coeurs permanents. De plus, vous infligez 30%% de dégats en moins au coupable.",
+        "culprit_name" : "Le coupable est §b%s",
         "culprit_unknown" : "§rDévoilé dans %s",
         "culprit_dead": "§rMort",
         "item": "Role par havwila",

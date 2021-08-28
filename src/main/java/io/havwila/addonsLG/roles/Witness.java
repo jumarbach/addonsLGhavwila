@@ -18,6 +18,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -177,5 +178,27 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
                 getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", event.getPlayerWW1().getName());
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageByEntityEvent event) {
+        if (!hasPower()) return;
+
+        if (!(event.getEntity() instanceof Player)) return;
+
+        if (!(event.getDamager() instanceof Player)) return;
+
+        Player damager = (Player) event.getDamager();
+        IPlayerWW damagerWW = game.getPlayerWW(damager.getUniqueId()).orElse(null);
+        //also handles case damagerWW == null
+        if (!damagerWW.equals(getPlayerWW())) return;
+
+        Player target = (Player) event.getEntity();
+        IPlayerWW targetWW = game.getPlayerWW(target.getUniqueId()).orElse(null);
+        if (targetWW == null) return;
+
+        if (!affectedPlayer.contains(targetWW)) return;
+
+        event.setDamage(event.getDamage() * 0.7);
     }
 }
