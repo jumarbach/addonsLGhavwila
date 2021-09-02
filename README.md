@@ -3,6 +3,10 @@ addon for Ph1lou's Werewolf plugin: https://github.com/Ph1Lou
 
 depends on https://github.com/Ph1Lou/WereWolfAPI
 
+If you'd like an english translation, please contact me.
+
+Falls eine Deutsche übersetzung erwünscht ist, kontaktiert mich bitte.
+
 ## Description
 
 Ajoute les roles suivants:
@@ -64,15 +68,9 @@ Si la mère meurt, les deux frères apprennent s'ils sont Romulus ou Remus. Romu
 
 Si on des deux frères meurt avant la mère, l'autre aura à gagner seul sans aucun pouvoir.
 
-### Medium (supprimé)
-
-Villageois, aura neutre
-
-Le medium est informé de la mort d'un joueur instantanément. Etant donné que cela lui permet de savoir quand quelqu'un ressucite, il est conseillé de l'utiliser dans des compositions où l'infection est un bonus et non une nécéssité pour les loups.
-
-Le medium a été remplacé par le nouveau Chaman dans le plugin principal. Si vous souhaitez tout de même utiliser le medium, il vous faut retirer les commenentaires qui retirent l'enregistrement du medium dans Main.java et ensuite compiler vous-même le code.
-
 ## Changelog
+
+1.2.2: Ajout config permettant au chasseur de tirer et retrait du code du medium pour des raisons de compatibilité
 
 1.2.1: Ajout Inquisiteur et Auramancien (Compatible avec la 1.8 une fois que la snapshot sort)
 

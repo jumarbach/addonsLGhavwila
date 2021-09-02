@@ -32,9 +32,6 @@ public class Main extends JavaPlugin {
                 .addAuthors("havwila", UUID.fromString("792945f6-ce44-4039-8382-8652153fe884")));
 
         try {
-            /*registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.medium.display", Medium.class)
-                    .addLoreKey("werewolf.role.medium.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));*/
-
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.witness.display", Witness.class)
                     .addLoreKey("werewolf.role.witness.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
 

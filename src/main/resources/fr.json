@@ -7,12 +7,6 @@
       }
     },
     "role": {
-      "medium": {
-        "display" : "Medium",
-        "description" : "Par votre lien avec le monde des esprits, vous serez immédiatement informé lorsque un joueur s'apprete a mourir",
-        "item": "Role par havwila",
-        "death_message" : "[§eLG UHC§r] Le joueur §b%s§r est aux portes de la mort"
-      },
       "witness": {
         "display" : "Témoin",
         "description" : "A l'annonce de la liste des loups, vous connaitrez le pseudo d'un coupable, membre du camp des loups. Toutefois, si le coupable venait a mourir, vous perdrez 4 coeurs permanents. De plus, vous infligez 30%% de dégats en moins au coupable.",

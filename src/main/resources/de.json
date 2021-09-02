@@ -1,11 +1,6 @@
 {
   "werewolf": {
     "role": {
-      "medium": {
-        "display" : "Medium",
-        "description" : "§6WERWOLF §7➽§9 Du bist ein §1Medium§9. Dein Ziel ist es, die Werwölfe zu besiegen. Durch deine Verbindung mit der Geisteswelt wirst du sofort informiert, sobald ein Spieler die Schwelle des Todes betritt",
-        "death_message" : "[§eLG UHC§r] Der Spieler §b%s§r hat die Schwelle des Todes betreten"
-      },
       "witness": {
         "display" : "Zeuge",
         "description" : "§6WEREWOLF §7➽§9 Du bist ein §1Zeuge§9. Dein Ziel ist es, die Werwölfe zu besiegen. Sobald die Werwölfe die Liste ihrer Artgenossen erfahren, erfährst du den Namen eines Wolfes. Sollte dieser Wolf sterben, verlierst du jedoch 4 Herze.",
