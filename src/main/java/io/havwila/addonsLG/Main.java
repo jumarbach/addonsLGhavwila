@@ -5,6 +5,7 @@ import io.github.ph1lou.werewolfapi.enums.*;
 import io.github.ph1lou.werewolfapi.registers.*;
 import io.havwila.addonsLG.commands.CommandAuramancer;
 import io.havwila.addonsLG.commands.CommandCroupier;
+import io.havwila.addonsLG.commands.CommandHunter;
 import io.havwila.addonsLG.commands.CommandInquisitor;
 import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
@@ -39,11 +40,11 @@ public class Main extends JavaPlugin {
 
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.croupier.display", Croupier.class)
                     .addLoreKey("werewolf.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
-                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION));
+                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION).addConfig(Croupier::configOtherDay));
 
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.hunter_havwila.display", Hunter.class)
                     .addLoreKey("werewolf.role.hunter_havwila.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
-                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION));
+                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION).addConfig(Hunter::configCanShoot));
 
             registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.romulus_remus.display", RomulusRemus.class)
                     .addLoreKey("werewolf.role.romulus_remus.item")
@@ -72,7 +73,15 @@ public class Main extends JavaPlugin {
                     .addRoleKey("werewolf.role.auramancer.display").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(0));
 
-            registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.global.croupier_every_other_day"));
+            registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.hunter_havwila.command", new CommandHunter())
+                    .addRoleKey("werewolf.role.hunter_havwila.display").addStateAccess(StatePlayer.DEATH)
+                    .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
+
+            registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.role.croupier.croupier_every_other_day")
+                    .unSetAppearInMenu());
+
+            registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.role.hunter_havwila.can_shoot")
+                    .unSetAppearInMenu());
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

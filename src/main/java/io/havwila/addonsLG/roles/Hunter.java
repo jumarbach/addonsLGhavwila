@@ -1,16 +1,23 @@
 package io.havwila.addonsLG.roles;
 
+import fr.minuskube.inv.ClickableItem;
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
+import io.github.ph1lou.werewolfapi.IConfiguration;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
+import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
 import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
+import io.github.ph1lou.werewolfapi.utils.BukkitUtils;
+import io.github.ph1lou.werewolfapi.utils.ItemBuilder;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
@@ -18,11 +25,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Hunter extends RoleVillage implements IAffectedPlayers {
+public class Hunter extends RoleVillage implements IAffectedPlayers, IPower {
 
     private final List<IPlayerWW> affectedPlayers = new ArrayList<>();
     private final List<HunterClue> clues = new ArrayList<>();
     private int secondsCount = 0;
+    boolean power = false;
 
     public Hunter(WereWolfAPI game, IPlayerWW playerWW, String key) {
         super(game, playerWW, key);
@@ -50,10 +58,13 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this)
+        DescriptionBuilder descBuilder = new DescriptionBuilder(game, this)
                 .setDescription(game.translate("werewolf.role.hunter_havwila.description"))
-                .setItems(game.translate("werewolf.role.hunter_havwila.items"))
-                .build();
+                .setItems(game.translate("werewolf.role.hunter_havwila.items"));
+        if (game.getConfig().isConfigActive("werewolf.role.hunter_havwila.can_shoot")) {
+            descBuilder = descBuilder.addExtraLines(game.translate("werewolf.role.hunter_havwila.description_shoot"));
+        }
+        return descBuilder.build();
     }
 
     @Override
@@ -68,13 +79,22 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
 
     @EventHandler
     public void onFinalDeathEvent(FinalDeathEvent event) {
-        if (getPlayerWW().isState(StatePlayer.DEATH)) {
-            return;
-        }
 
         IPlayerWW playerWW = event.getPlayerWW();
 
-        if (playerWW.equals(getPlayerWW())) {
+        if (playerWW.equals(this.getPlayerWW())) {
+            if (game.getConfig().isConfigActive("werewolf.role.hunter_havwila.can_shoot")) {
+                this.setPower(true);
+                getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.perform");
+                BukkitUtils.scheduleSyncDelayedTask(() -> {
+                    getPlayerWW().sendMessageWithKey("werewolf.check.end_selection");
+                    setPower(false);
+                }, 20 * 30);
+            }
+            return;
+        }
+
+        if (getPlayerWW().isState(StatePlayer.DEATH)) {
             return;
         }
 
@@ -162,6 +182,32 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
         return list.toString();
     }
 
+    @Override
+    public void setPower(boolean b) {
+        power = b;
+    }
+
+    @Override
+    public boolean hasPower() {
+        return power;
+    }
+
+    public static ClickableItem configCanShoot(WereWolfAPI game) {
+        IConfiguration config = game.getConfig();
+
+        return ClickableItem.of(new ItemBuilder(Material.BOW)
+                .setLore(game.translate(
+                        config.isConfigActive("werewolf.role.hunter_havwila.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                .setDisplayName(game.translate("werewolf.role.hunter_havwila.can_shoot"))
+                .build(), e -> {
+            config.setConfig("werewolf.role.hunter_havwila.can_shoot", !config.isConfigActive("werewolf.role.hunter_havwila.can_shoot"));
+
+            e.setCurrentItem(new ItemBuilder(e.getCurrentItem())
+                    .setLore(game.translate(config.isConfigActive("werewolf.role.hunter_havwila.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                    .build());
+        });
+    }
+
     private class HunterClue {
 
         private final IPlayerWW playerWW;
@@ -208,5 +254,7 @@ public class Hunter extends RoleVillage implements IAffectedPlayers {
         public List<String> getNamesList() {
             return playerNames;
         }
+
+
     }
 }
