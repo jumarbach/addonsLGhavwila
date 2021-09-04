@@ -51,8 +51,8 @@ public class CommandAuramancer implements ICommand {
                 nearbyPlayers.removeIf(nearbyWW -> !nearbyWW.getRole().getAura().equals(Aura.LIGHT));
                 nearbyPlayers.forEach(nearbyWW -> {
                     nearbyWW.addPotionModifier(PotionModifier.add(PotionEffectType.SPEED, 2400, 0, "auramancer"));
-                    nearbyWW.sendMessageWithKey("werewolf.role.auromancer.command_light_others");
-                    playerWW.sendMessageWithKey("werewolf.role.auromancer.command_light_self",
+                    nearbyWW.sendMessageWithKey("werewolf.role.auramancer.command_light_others");
+                    playerWW.sendMessageWithKey("werewolf.role.auramancer.command_light_self",
                             Formatter.format("&aura&", Aura.LIGHT.getChatColor() + game.translate(Aura.LIGHT.getKey())));
                 });
                 break;

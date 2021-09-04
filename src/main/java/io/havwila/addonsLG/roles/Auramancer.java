@@ -125,7 +125,7 @@ public class Auramancer extends Role implements IPower {
                     if (currentAura == Aura.DARK) {
                         currentAura = Aura.NEUTRAL;
                     }
-                    if (currentAura == Aura.NEUTRAL) {
+                    else if (currentAura == Aura.NEUTRAL) {
                         currentAura = Aura.LIGHT;
                     }
                 } else {
