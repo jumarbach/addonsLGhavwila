@@ -12,6 +12,7 @@ import io.github.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
 import io.github.ph1lou.werewolfapi.events.game.utils.WinConditionsCheckEvent;
+import io.github.ph1lou.werewolfapi.events.random_events.SwapEvent;
 import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
 import io.github.ph1lou.werewolfapi.events.werewolf.NewWereWolfEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
@@ -463,5 +464,34 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         }
 
         this.getPlayerWW().addPotionModifier(PotionModifier.remove(PotionEffectType.DAMAGE_RESISTANCE,"romulus_remus_strength"));
+    }
+
+    @EventHandler
+    public void onSwap(SwapEvent event) {
+        if (!isInitialized) return;
+
+        IPlayerWW playerWW1 = event.getPlayerWW1();
+        IPlayerWW playerWW2 = event.getPlayerWW2();
+        boolean change = false;
+
+        if (getMother().equals(playerWW1)) {
+            affectedPlayers.set(1, playerWW2);
+            change = true;
+        } else if (getMother().equals(playerWW2)) {
+            affectedPlayers.set(1, playerWW1);
+            change = true;
+        }
+
+        if (getBrother().equals(playerWW1)) {
+            affectedPlayers.set(0, playerWW2);
+            change = true;
+        } else if (getBrother().equals(playerWW2)) {
+            affectedPlayers.set(0, playerWW1);
+            change = true;
+        }
+
+        if (change) {
+            getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.family_change");
+        }
     }
 }

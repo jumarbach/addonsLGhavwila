@@ -1,16 +1,18 @@
 package io.havwila.addonsLG.commands;
 
+import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.havwila.addonsLG.roles.Inquisitor;
+import io.havwila.addonsLG.roles.Mastermind;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class CommandInquisitor implements ICommand {
+public class CommandMastermindDisable implements ICommand {
 
     @Override
     public void execute(WereWolfAPI game, Player player, String[] args) {
@@ -21,7 +23,7 @@ public class CommandInquisitor implements ICommand {
         if (playerWW == null) {
             return;
         }
-        Inquisitor inquisitor = (Inquisitor) playerWW.getRole();
+        Mastermind mastermind = (Mastermind) playerWW.getRole();
 
         Player playerArg = Bukkit.getPlayer(args[0]);
 
@@ -37,17 +39,15 @@ public class CommandInquisitor implements ICommand {
             return;
         }
 
-
-        inquisitor.addAffectedPlayer(targetWW);
-
-        if (targetWW.getRole().isWereWolf()) {
-            targetWW.getRole().disableAbilities();
-
-            targetWW.sendMessageWithKey("werewolf.role.inquisitor.smite_disable");
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_success");
-        } else {
-            inquisitor.disableAbilities();
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_fail");
+        if (!mastermind.getAffectedPlayers().contains(targetWW)) {
+            playerWW.sendMessageWithKey("werewolf.role.mastermind.not_guessed", Formatter.format("&player&", targetWW));
+            return;
         }
+
+        playerWW.removePlayerMaxHealth(2);
+        targetWW.getRole().disableAbilities();
+        playerWW.sendMessageWithKey("werewolf.role.mastermind.disable_perform",
+                Formatter.format("&player&", targetWW.getName()));
+        targetWW.sendMessageWithKey("werewolf.role.mastermind.disable_target");
     }
 }

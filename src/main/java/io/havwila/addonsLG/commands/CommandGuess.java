@@ -3,14 +3,14 @@ package io.havwila.addonsLG.commands;
 import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.havwila.addonsLG.roles.Inquisitor;
+import io.havwila.addonsLG.guess.GuessInventory;
+import io.havwila.addonsLG.guess.IGuesser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class CommandInquisitor implements ICommand {
+public class CommandGuess implements ICommand {
 
     @Override
     public void execute(WereWolfAPI game, Player player, String[] args) {
@@ -21,7 +21,6 @@ public class CommandInquisitor implements ICommand {
         if (playerWW == null) {
             return;
         }
-        Inquisitor inquisitor = (Inquisitor) playerWW.getRole();
 
         Player playerArg = Bukkit.getPlayer(args[0]);
 
@@ -32,22 +31,19 @@ public class CommandInquisitor implements ICommand {
         UUID argUUID = playerArg.getUniqueId();
         IPlayerWW targetWW = game.getPlayerWW(argUUID).orElse(null);
 
-        if (targetWW == null || targetWW.isState(StatePlayer.DEATH)) {
-            playerWW.sendMessageWithKey("werewolf.check.player_not_found");
+        if (targetWW == null) {
             return;
         }
 
-
-        inquisitor.addAffectedPlayer(targetWW);
-
-        if (targetWW.getRole().isWereWolf()) {
-            targetWW.getRole().disableAbilities();
-
-            targetWW.sendMessageWithKey("werewolf.role.inquisitor.smite_disable");
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_success");
-        } else {
-            inquisitor.disableAbilities();
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_fail");
+        if (!(playerWW.getRole() instanceof IGuesser)) {
+            playerWW.sendMessageWithKey("werewolf.check.permission_denied");
+            return;
         }
+
+        IGuesser role = (IGuesser) playerWW.getRole();
+
+        if (!role.canGuess(targetWW)) return;
+
+        GuessInventory.getInventory(targetWW).open(player);
     }
 }

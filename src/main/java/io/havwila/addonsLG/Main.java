@@ -3,10 +3,8 @@ package io.havwila.addonsLG;
 import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.*;
 import io.github.ph1lou.werewolfapi.registers.*;
-import io.havwila.addonsLG.commands.CommandAuramancer;
-import io.havwila.addonsLG.commands.CommandCroupier;
-import io.havwila.addonsLG.commands.CommandHunter;
-import io.havwila.addonsLG.commands.CommandInquisitor;
+import io.havwila.addonsLG.commands.*;
+import io.havwila.addonsLG.guess.TestGuesser;
 import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -58,6 +56,12 @@ public class Main extends JavaPlugin {
                     .addCategory(Category.ADDONS)
                     .addCategory(Category.VILLAGER));
 
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.guess.display", TestGuesser.class)
+                    .addLoreKey("werewolf.role.auramancer.item")
+                    .addCategory(Category.VILLAGER)
+                    .addCategory(Category.ADDONS));
+
+
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier())
                     .addRoleKey("werewolf.role.croupier.display").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
@@ -73,6 +77,9 @@ public class Main extends JavaPlugin {
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.hunter_havwila.command", new CommandHunter())
                     .addRoleKey("werewolf.role.hunter_havwila.display").addStateAccess(StatePlayer.DEATH)
                     .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
+
+            registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.guess.command", new CommandGuess())
+                    .addStateWW(StateGame.GAME).addArgNumbers(1));
 
             registerManager.registerConfig(new ConfigRegister(addonKey, "werewolf.role.croupier.croupier_every_other_day")
                     .unSetAppearInMenu());

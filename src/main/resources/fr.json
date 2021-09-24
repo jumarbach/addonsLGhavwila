@@ -100,7 +100,27 @@
         "command_neutral": "[§eLG UHC§r] &light_p& joueurs avec une aura &light_a&§r, &neutral_p& joueurs avec une aura &neutral_a&§r et &dark_p& joueurs avec une aura &dark_a&§r se trouvent proches de vous",
         "command_dark_self": "[§eLG UHC§r] Tous les joueurs avec une aura &aura_light& proches ont obtenu lenteur pour 2 minutes",
         "command_dark_others": "[§cLG UHC§r] L'auramancien vous a infligé un effet de lenteur pour 2 minutes"
+      },
+      "mastermind": {
+        "display": "Mastermind",
+        "description": "Vous pouvez deviner les roles des joueurs avec §b/ww deviner§r. Si vous devinez correctement, vous gagnez un coeur permanent, autrement vous en perdez un.\n La commande §b/ww mindswap§r, coutant 2 coeurs permanents et utilisable une fois vous permet d'échanger les roles de deux joueurs dont vos avez deviné le role.\n La commande §b/ww mindsilence§r, coutant 1 coeur permanent, vous permet de désactiver les compétences d'un joueur dont vous avez deviné le role.",
+        "target_repeat": "[§cLG UHC§r] Vous avez déja tenté de deviner le role de ce joueur",
+        "guess_success": "[§cLG UHC§r] Vous avez deviné le role de &player&. Vous obtenez un coeur permanent supplémentaire",
+        "guess_fail": "[§cLG UHC§r] Vous vous êtes trompé de rôle. Vous perdez donc un coeur permanent",
+        "not_guessed": "[§eLG UHC§r] Vous n'avez pas deviné le role de &player&. Vous ne pouvez pas effectuer cette action",
+        "command_disable": "mindsilence",
+        "disable_perform": "[§cLG UHC§r] Vous avez désactivé les compétences de &player&",
+        "disable_target": "[§eLG UHC§r] Vos compétences ont été désactivés: Vous perdez vos effets et pouvoirs définitivement",
+        "command_swap": "mindswap",
+        "swap_perform": "[§cLG UHC§r] Vous avez échangé les roles des 2 joueurs"
       }
+    },
+    "guess": {
+      "command": "deviner",
+      "title": "Devines le role de §b&player&",
+      "display": "testeur",
+      "success": "&player& est un &role&",
+      "failure": "&player& n'est pas un &guess&, mais un &real&"
     }
   }
 }
