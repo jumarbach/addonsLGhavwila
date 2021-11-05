@@ -4,6 +4,7 @@ import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.enums.Category;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
 import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
@@ -12,6 +13,7 @@ import io.havwila.addonsLG.guess.IGuesser;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Set;
 
 public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayers, IPower {
 
@@ -37,7 +39,7 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
     public boolean canGuess(IPlayerWW targetWW) {
 
         if (!getPlayerWW().isState(StatePlayer.ALIVE)) {
-            getPlayerWW().sendMessageWithKey("werewolf.check.state_player");
+            getPlayerWW().sendMessageWithKey("werewolf.check.death");
             return false;
         }
 
@@ -66,6 +68,11 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
             getPlayerWW().sendMessageWithKey("werewolf.role.mastermind.guess_fail");
             getPlayerWW().removePlayerMaxHealth(2);
         }
+    }
+
+    @Override
+    public Set<Category> getAvailableCategories() {
+        return null;
     }
 
     @Override

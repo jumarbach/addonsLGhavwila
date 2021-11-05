@@ -1,6 +1,6 @@
 name: addonsLG_havwila
 main: io.havwila.addonsLG.Main
-version: "1.2.2"
+version: "1.2.3"
 description: adds new roles
 author: havwila
 api-version: "1.8"

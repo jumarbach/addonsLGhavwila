@@ -103,6 +103,7 @@
       },
       "mastermind": {
         "display": "Mastermind",
+        "item": "Role par havwila",
         "description": "Vous pouvez deviner les roles des joueurs avec §b/ww deviner§r. Si vous devinez correctement, vous gagnez un coeur permanent, autrement vous en perdez un.\n La commande §b/ww mindswap§r, coutant 2 coeurs permanents et utilisable une fois vous permet d'échanger les roles de deux joueurs dont vos avez deviné le role.\n La commande §b/ww mindsilence§r, coutant 1 coeur permanent, vous permet de désactiver les compétences d'un joueur dont vous avez deviné le role.",
         "target_repeat": "[§cLG UHC§r] Vous avez déja tenté de deviner le role de ce joueur",
         "guess_success": "[§cLG UHC§r] Vous avez deviné le role de &player&. Vous obtenez un coeur permanent supplémentaire",
@@ -113,14 +114,21 @@
         "disable_target": "[§eLG UHC§r] Vos compétences ont été désactivés: Vous perdez vos effets et pouvoirs définitivement",
         "command_swap": "mindswap",
         "swap_perform": "[§cLG UHC§r] Vous avez échangé les roles des 2 joueurs"
+      },
+      "silencer_werewolf": {
+        "display": "Loup Muselant",
+        "item": "Role par havwila",
+        "description":"Une fois par nuit, tant qu'il reste plus de villageois que de loups, vous pouvez tentez de deviner le role d'un villageois. Si vous réussissez, il perdra ses pouvoirs. Si vous vous trompez, vous ne pourrez plus utiliser cette commande jusqu'à la fin de la partie",
+        "desc_command": "/ww deviner",
+        "guess_success": "[§cLG UHC§r] Vous avez deviné le role de &player&. Il perd ses pouvoirs",
+        "guess_fail": "[§cLG UHC§r] Vous vous êtes trompé de rôle. Vous ne pouvez désormais plus utiliser cette commande",
+        "disable_target": "[§eLG UHC§r] Le Loup muselant a trouvé votre role et a désactivé vos pouvoirs jusqu'à la fin de la game",
+        "power": "[§cLG UHC§r] Vous pouvez à nouveau utiliser votre pouvoir",
+        "more_wolves": "[§eLG UHC§r] Il y a moins de villageois que de loups. Vous ne pouvez pas utiliser votre pouvoir"
       }
     },
     "guess": {
-      "command": "deviner",
-      "title": "Devines le role de §b&player&",
-      "display": "testeur",
-      "success": "&player& est un &role&",
-      "failure": "&player& n'est pas un &guess&, mais un &real&"
+      "command": "deviner"
     }
   }
 }

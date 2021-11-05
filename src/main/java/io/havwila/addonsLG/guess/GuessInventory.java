@@ -20,27 +20,26 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class GuessInventory implements InventoryProvider {
 
     private Category category = Category.VILLAGER;
+    private Set<Category> categories;
     private final IPlayerWW targetWW;
 
-    public GuessInventory(IPlayerWW targetWW) {
+    public GuessInventory(IPlayerWW targetWW, Set<Category> categories) {
         this.targetWW = targetWW;
+        this.categories = categories;
     }
 
-    public static SmartInventory getInventory(IPlayerWW targetWW) {
+    public static SmartInventory getInventory(IPlayerWW targetWW, Set<Category> categories) {
         return SmartInventory.builder()
                 .id("guess")
                 .manager(JavaPlugin.getPlugin(Main.class).getAPI().getInvManager())
-                .provider(new GuessInventory(targetWW))
+                .provider(new GuessInventory(targetWW, categories))
                 .size(6, 9)
                 .title(JavaPlugin.getPlugin(Main.class).getAPI().getWereWolfAPI().translate("werewolf.guess.title",
                         Formatter.format("&player&", targetWW.getName())))
@@ -61,10 +60,22 @@ public class GuessInventory implements InventoryProvider {
 
         List<String> lore = new ArrayList<>(Arrays.asList(game.translate("werewolf.menu.left"), game.translate("werewolf.menu.right")));
 
-        contents.set(5, 1, ClickableItem.of((new ItemBuilder(Category.WEREWOLF == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.WEREWOLF.getKey())).setAmount(1).build()), e -> this.category = Category.WEREWOLF));
-        contents.set(5, 3, ClickableItem.of((new ItemBuilder(Category.VILLAGER == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.VILLAGER.getKey())).setAmount(1).build()), e -> this.category = Category.VILLAGER));
-        contents.set(5, 5, ClickableItem.of((new ItemBuilder(Category.NEUTRAL == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.NEUTRAL.getKey())).setAmount(1).build()), e -> this.category = Category.NEUTRAL));
-        contents.set(5, 7, ClickableItem.of((new ItemBuilder(Category.ADDONS == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate("werewolf.categories.addons")).setAmount(1).build()), e -> this.category = Category.ADDONS));
+        if (categories.contains(Category.ADDONS)) {
+            contents.set(5, 7, ClickableItem.of((new ItemBuilder(Category.ADDONS == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate("werewolf.categories.addons")).setAmount(1).build()), e -> this.category = Category.ADDONS));
+            category = Category.ADDONS;
+        }
+        if (categories.contains(Category.NEUTRAL)) {
+            contents.set(5, 5, ClickableItem.of((new ItemBuilder(Category.NEUTRAL == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.NEUTRAL.getKey())).setAmount(1).build()), e -> this.category = Category.NEUTRAL));
+            category = Category.NEUTRAL;
+        }
+        if (categories.contains(Category.WEREWOLF)) {
+            contents.set(5, 1, ClickableItem.of((new ItemBuilder(Category.WEREWOLF == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.WEREWOLF.getKey())).setAmount(1).build()), e -> this.category = Category.WEREWOLF));
+            category = Category.WEREWOLF;
+        }
+        if (categories.contains(Category.VILLAGER)) {
+            contents.set(5, 3, ClickableItem.of((new ItemBuilder(Category.VILLAGER == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.VILLAGER.getKey())).setAmount(1).build()), e -> this.category = Category.VILLAGER));
+            category = Category.VILLAGER;
+        }
 
 
         lore.add(game.translate("werewolf.menu.shift"));
@@ -130,9 +141,9 @@ public class GuessInventory implements InventoryProvider {
             contents.set(4, 7, null);
             contents.set(4, 8, null);
             contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.ARROW).setDisplayName(game.translate("werewolf.menu.roles.previous", page, pagination.isFirst() ? page : page - 1)).build(),
-                    e -> getInventory(targetWW).open(player, pagination.previous().getPage())));
+                    e -> getInventory(targetWW, categories).open(player, pagination.previous().getPage())));
             contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.ARROW).setDisplayName(game.translate("werewolf.menu.roles.next", page, pagination.isLast() ? page : page + 1)).build(),
-                    e -> getInventory(targetWW).open(player, pagination.next().getPage())));
+                    e -> getInventory(targetWW, categories).open(player, pagination.next().getPage())));
             contents.set(4, 4, ClickableItem.empty(new ItemBuilder(UniversalMaterial.SIGN.getType()).setDisplayName(game.translate("werewolf.menu.roles.current", page, items.size() / 36 + 1)).build()));
         } else {
             int i = 0;

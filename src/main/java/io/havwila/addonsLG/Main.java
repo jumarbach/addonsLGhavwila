@@ -4,7 +4,6 @@ import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.*;
 import io.github.ph1lou.werewolfapi.registers.*;
 import io.havwila.addonsLG.commands.*;
-import io.havwila.addonsLG.guess.TestGuesser;
 import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -56,10 +55,13 @@ public class Main extends JavaPlugin {
                     .addCategory(Category.ADDONS)
                     .addCategory(Category.VILLAGER));
 
-            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.guess.display", TestGuesser.class)
-                    .addLoreKey("werewolf.role.auramancer.item")
-                    .addCategory(Category.VILLAGER)
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.mastermind.display", Mastermind.class)
+                    .addLoreKey("werewolf.role.mastermind.item")
+                    .addCategory(Category.NEUTRAL)
                     .addCategory(Category.ADDONS));
+
+            registerManager.registerRole(new RoleRegister(addonKey, "werewolf.role.silencer_werewolf.display", SilencerWerewolf.class)
+                    .addLoreKey("werewolf.role.silencer_werewolf.item").addCategory(Category.WEREWOLF).addCategory(Category.ADDONS));
 
 
             registerManager.registerCommands(new CommandRegister(addonKey, "werewolf.role.croupier.command", new CommandCroupier())
