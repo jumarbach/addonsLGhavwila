@@ -41,7 +41,7 @@ public class CommandMastermindSwap implements ICommand {
         }
 
         if (!mastermind.getAffectedPlayers().contains(targetWW1)) {
-            playerWW.sendMessageWithKey("werewolf.role.mastermind.not_guessed", Formatter.format("&player&", targetWW1.getName()));
+            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW1.getName()));
             return;
         }
 
@@ -61,7 +61,7 @@ public class CommandMastermindSwap implements ICommand {
         }
 
         if (!mastermind.getAffectedPlayers().contains(targetWW2)) {
-            playerWW.sendMessageWithKey("werewolf.role.mastermind.not_guessed", Formatter.format("&player&", targetWW2.getName()));
+            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW2.getName()));
             return;
         }
 
@@ -86,7 +86,7 @@ public class CommandMastermindSwap implements ICommand {
         targetWW2.clearPotionEffects();
         targetWW1.sendMessageWithKey("werewolf.random_events.swap.concerned");
         targetWW2.sendMessageWithKey("werewolf.random_events.swap.concerned");
-        playerWW.sendMessageWithKey("werewolf.role.mastermind.swap_perform");
+        playerWW.sendMessageWithKey("havwila.role.mastermind.swap_perform");
         roles1.recoverPower();
         roles2.recoverPower();
         roles1.recoverPotionEffects();

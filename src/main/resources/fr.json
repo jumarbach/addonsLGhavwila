@@ -1,5 +1,5 @@
 {
-  "werewolf": {
+  "havwila": {
     "addon": {
       "havwila": {
         "name": "Roles de Havwila",
@@ -10,37 +10,37 @@
       "witness": {
         "display" : "Témoin",
         "description" : "A l'annonce de la liste des loups, vous connaitrez le pseudo d'un coupable, membre du camp des loups. Toutefois, si le coupable venait a mourir, vous perdrez 4 coeurs permanents. De plus, vous infligez 30%% de dégats en moins au coupable.",
-        "culprit_name" : "Le coupable est §b%s",
-        "culprit_unknown" : "§rDévoilé dans %s",
-        "culprit_dead": "§rMort",
+        "culprit_name" : "Le coupable est §b&player&",
+        "culprit_unknown" : "Le coupable est dévoilé dans &time&",
+        "culprit_dead": "Le coupable est Mort",
         "item": "Role par havwila",
-        "reveal_culprit" : "[§eLG UHC§r] Le joueur §b%s§r appartient au camp des loup-garous",
+        "reveal_culprit" : "[§eLG UHC§r] Le joueur §b&player&§r appartient au camp des loup-garous",
         "culprit_death" : "[§eLG UHC§r] Le coupable est mort, vous perdez donc 4 coeurs permanents",
-        "change" : "[§eLG UHC§r] L'identité du coupable a changée, il s'agit désormais de §b%s§r"
+        "change" : "[§eLG UHC§r] L'identité du coupable a changée, il s'agit désormais de §b&player&§r"
       },
       "croupier": {
         "display": "Croupier",
         "description": "Chaque jour, vous pourrez sélectionner un joueur qui recevra un message contenant le pseudo d'un joueur aléatoire ainsi que 3 roles, parmi lesquels se trouve le role de ce joueur.",
         "item": "Role par havwila",
         "command": "distribuer",
-        "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un joueur avec §b/ww distribuer§r vous avez §b%s",
+        "perform": "[§eLG UHC§r] Vous pouvez distribuer des informations à un joueur avec §b/ww distribuer§r vous avez §b&time&",
         "not_enough_players": "Il ne reste pas assez de joueurs pour utiliser cette commande",
         "yourself": "Vous ne pouvez pas vous sélectionner vous-même",
         "repeated_target": "Vous ne pouvez sélectionner qu'une seule fois le même joueur",
-        "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b%s§r se trouve parmi les suivants: §b%s§r, §b%s§r, §b%s",
+        "card": "[§eLG UHC§r] Grâce au croupier, vous savez que le role de §b&player&§r se trouve parmi les suivants: §b&role1&§r, §b&role2&§r, §b&role3&",
         "confirm": "[§eLG UHC§r] Les messages ont été envoyés",
         "all_exposed": "[§eLG UHC§r] Tous les joueurs encore en vie ont eu leur rôle dévoilé. Vous ne pouvez plus utiliser votre pouvoir",
         "croupier_every_other_day": "Croupier tous les deux jours"
       },
-      "hunter_havwila": {
+      "hunter": {
         "display": "Chasseur",
         "description": "Vous pouvez enqueter sur le cadavre d'un joueur en restant à moins de 20 blocs du cadavre et obtiendrez à chaque minute des informations sur les joueurs à moins de 70 blocs au moment de la mort",
         "description_shoot": "A votre mort, vous pouvez tirer sur un joueur de votre choix autre que votre tueur",
         "item": "",
         "items": "1 arc, 64 flèches, un livre power III",
-        "clue_player": "[§eLG UHC§r] §b%s§r est mort ici, §b%s§r autres joueurs se trouvaient à proximité lors de sa mort",
-        "clue_role": "[§eLG UHC§r] §b%s§r était §b%s§r. §b%s§r étaient proches de lui lors de sa mort",
-        "clue_nearby": "[§eLG UHC§r] §b%s§r étaient proches de §b%s§r lors de sa mort",
+        "clue_player": "[§eLG UHC§r] §b&player&§r est mort ici, §b&number&§r autres joueurs se trouvaient à proximité lors de sa mort",
+        "clue_role": "[§eLG UHC§r] §b&victim&§r était §b&role&§r. §b&players&§r étaient proches de lui lors de sa mort",
+        "clue_nearby": "[§eLG UHC§r] §b&players&§r étaient proches de §b&victim&§r lors de sa mort",
         "command": "tirer",
         "perform": "[§eLG UHC§r] Vous pouvez tirer sur un joueur autre que votre tueur pour lui faire perdre 5 coeurs avec §b/ww tirer§r. Vous avez 30 seconds",
         "invalid_target": "[§eLG UHC§r] Vous ne pouvez pas tirer sur cette cible",
@@ -72,7 +72,7 @@
         "display": "Inquisiteur",
         "item": "Role par havwila",
         "description": "Au début du jour, vous pouvez châtier un joueur avec la commande §b/ww chatiment§r. Si le joueur est un loup, il perd ses pouvoirs et effets. Si le joueur ciblé n'est pas un loup, vous perdez votre pouvoir",
-        "smite_message": "[§eLG UHC§r] Châtiez un joueur avec §b/ww chatiment§r, vous avez §b%s",
+        "smite_message": "[§eLG UHC§r] Châtiez un joueur avec §b/ww chatiment§r, vous avez §b&time&",
         "command": "chatiment",
         "smite_disable": "[§cLG UHC§r] L'inquisiteur vous a châtié. Vous perdez vos effets et pouvoirs définitivement",
         "smite_success": "[§eLG UHC§r] Votre cible est un loup, il perd donc définitivement tous ses pouvoirs et effets",
@@ -81,25 +81,17 @@
       "auramancer": {
         "display": "Auramancien",
         "item": "Role par havwila",
-        "description": "Vous possédez des effets différents en fonction de l'aura que vous avez. Une fois dans la partie, vous pouvez utiliser la commande §b/ww auraflare§r. Celle-ci est réutilisable après  Lorsque vous êtes affectés par un modificateur d'aura, votre aura devient l'aura du modificateur. Quand vous tuez un joueur avec une aura &dark&§r, votre aura s'améliore d'un cran. S'il n'y a plus d'autre joueur avec une aura &light&§r, votre aura ne changera plus jusqu'à la fin de la partie",
-        "passive_light": "§bPassif§r: Vous disposez de l'effet resistance tant que vous êtes proches (20 blocs) d'un autre joueur à l'aura &light&§r\n",
+        "description": "Vous possédez des effets différents en fonction de l'aura que vous avez. Lorsque vous êtes affectés par un modificateur d'aura, votre aura devient l'aura du modificateur. Quand vous tuez un joueur avec une aura &dark&§r, votre aura s'améliore d'un cran.",
+        "passive_light": "§bPassif§r: Les joueurs proches à l'aura &light&§r disposent de 0.5 de force\n",
         "passive_neutral": "§bPassif§r: Lorsque un joueur est tué proche de vous (50 blocs), vous apprenez quelles sont les auras du mort et du tueur\n",
-        "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura &light&§\n",
-        "active_light": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tout les joueurs proches avec une aura &light&§r obtiennent §bspeed§r pendant 2 minutes\n",
-        "active_neutral": "§eActif§r: Vous affiche le nombre de joueurs avec chaque aura se trouvant proches (50 blocs) de vous. Tous les joueurs avec une aura &neutral&§r obtiennent une aura &light&§r\n",
-        "active_dark": "§eActif§r: Retire le modificateur d'aura résultant d'un kill de joueur à tous les joueurs proches (50 blocs). Ensuite, tous les joueurs avec une aura &light&§r ont §4slowness§r pour 2 minutes\n",
+        "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura &light&. Vous disposez du pseudo d'un joueur à l'aura &light&. S'il ne reste plus de joueurs à l'aura &light&, votre aura ne change plus et vous obtenez speed permanent.\n",
         "aura_status": "Votre aura est &aura&§r\n",
         "aura_sense": "[§cLG UHC§r] Un joueur proche avec une aura &auraVictim& a été tué par un joueur avec une aura &auraKiller&",
         "aura_kill": "[§eLG UHC§r] Vous avez tué un joueur avec une aura &aura_dead&. Votre aura est désormais &aura_new&",
         "aura_change": "[§eLG UHC§r] Votre aura a changé. Elle est désormais &aura&",
-        "aura_locked": "[§eLG UHC§r] Plus aucun autre joueur ne possède une aura &aura_light&§r. Vous gardez votre aura &aura& pour le restant de la partie. Vous pouvez réutiliser votre capacité active une fois",
-        "command": "auraflare",
-        "not_enough_players": "[§eLG UHC§r] Il faut aux moins §b2§r joueurs proches",
-        "command_light_self": "[§eLG UHC§r] Vous avez donné un effet de speed à tous les joueurs proches avec une aura &aura&",
-        "command_light_others": "[§eLG UHC§r] Grâce à l'auromancien, vous obtenez speed pour 2 minutes",
-        "command_neutral": "[§eLG UHC§r] &light_p& joueurs avec une aura &light_a&§r, &neutral_p& joueurs avec une aura &neutral_a&§r et &dark_p& joueurs avec une aura &dark_a&§r se trouvent proches de vous",
-        "command_dark_self": "[§eLG UHC§r] Tous les joueurs avec une aura &aura_light& proches ont obtenu lenteur pour 2 minutes",
-        "command_dark_others": "[§cLG UHC§r] L'auramancien vous a infligé un effet de lenteur pour 2 minutes"
+        "aura_locked": "[§eLG UHC§r] Plus aucun autre joueur ne possède une aura &aura_light&§r. Vous gardez votre aura &aura& pour le restant de la partie.",
+        "light_player": "Le joueur §b&player&§r a une aura &light&.",
+        "no_light": "Il n'y a plus de joueurs avec l'aura &light&."
       },
       "mastermind": {
         "display": "Mastermind",
@@ -128,7 +120,8 @@
       }
     },
     "guess": {
-      "command": "deviner"
+      "command": "deviner",
+      "title": "Devinez le role de §b&player&"
     }
   }
 }

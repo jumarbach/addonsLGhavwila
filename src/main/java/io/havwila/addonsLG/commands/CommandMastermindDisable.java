@@ -40,14 +40,14 @@ public class CommandMastermindDisable implements ICommand {
         }
 
         if (!mastermind.getAffectedPlayers().contains(targetWW)) {
-            playerWW.sendMessageWithKey("werewolf.role.mastermind.not_guessed", Formatter.format("&player&", targetWW));
+            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW));
             return;
         }
 
         playerWW.removePlayerMaxHealth(2);
         targetWW.getRole().disableAbilities();
-        playerWW.sendMessageWithKey("werewolf.role.mastermind.disable_perform",
+        playerWW.sendMessageWithKey("havwila.role.mastermind.disable_perform",
                 Formatter.format("&player&", targetWW.getName()));
-        targetWW.sendMessageWithKey("werewolf.role.mastermind.disable_target");
+        targetWW.sendMessageWithKey("havwila.role.mastermind.disable_target");
     }
 }

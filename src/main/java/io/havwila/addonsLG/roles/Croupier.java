@@ -1,10 +1,7 @@
 package io.havwila.addonsLG.roles;
 
 import fr.minuskube.inv.ClickableItem;
-import io.github.ph1lou.werewolfapi.DescriptionBuilder;
-import io.github.ph1lou.werewolfapi.IConfiguration;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.*;
 import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.enums.TimerBase;
@@ -34,7 +31,7 @@ public class Croupier  extends RoleWithLimitedSelectionDuration implements IAffe
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.croupier.description")).build();
+        return new DescriptionBuilder(game, this).setDescription(game.translate("havwila.role.croupier.description")).build();
     }
 
     @Override
@@ -74,15 +71,15 @@ public class Croupier  extends RoleWithLimitedSelectionDuration implements IAffe
             return;
         }
 
-        if (game.getConfig().isConfigActive("werewolf.role.croupier.croupier_every_other_day") && event.getNumber() == dayNumber + 1) {
+        if (game.getConfig().isConfigActive("havwila.role.croupier.croupier_every_other_day") && event.getNumber() == dayNumber + 1) {
             return;
         }
         dayNumber = event.getNumber();
 
         setPower(true);
 
-        getPlayerWW().sendMessageWithKey("werewolf.role.croupier.perform",
-                Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey())));
+        getPlayerWW().sendMessageWithKey("havwila.role.croupier.perform",
+                Formatter.format("&time&", Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey()))));
     }
 
     public static ClickableItem configOtherDay(WereWolfAPI game) {
@@ -90,13 +87,13 @@ public class Croupier  extends RoleWithLimitedSelectionDuration implements IAffe
 
         return ClickableItem.of(new ItemBuilder(Material.PAPER)
                 .setLore(game.translate(
-                        config.isConfigActive("werewolf.role.croupier.croupier_every_other_day") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
-                .setDisplayName(game.translate("werewolf.role.croupier.croupier_every_other_day"))
+                        config.isConfigActive("havwila.role.croupier.croupier_every_other_day") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                .setDisplayName(game.translate("havwila.role.croupier.croupier_every_other_day"))
                 .build(), e -> {
-            config.setConfig("werewolf.role.croupier.croupier_every_other_day", !config.isConfigActive("werewolf.role.croupier.croupier_every_other_day"));
+            config.setConfig("havwila.role.croupier.croupier_every_other_day", !config.isConfigActive("havwila.role.croupier.croupier_every_other_day"));
 
             e.setCurrentItem(new ItemBuilder(e.getCurrentItem())
-                    .setLore(game.translate(config.isConfigActive("werewolf.role.croupier.croupier_every_other_day") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                    .setLore(game.translate(config.isConfigActive("havwila.role.croupier.croupier_every_other_day") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
                     .build());
         });
     }

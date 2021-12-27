@@ -43,11 +43,11 @@ public class CommandInquisitor implements ICommand {
         if (targetWW.getRole().isWereWolf()) {
             targetWW.getRole().disableAbilities();
 
-            targetWW.sendMessageWithKey("werewolf.role.inquisitor.smite_disable");
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_success");
+            targetWW.sendMessageWithKey("havwila.role.inquisitor.smite_disable");
+            playerWW.sendMessageWithKey("havwila.role.inquisitor.smite_success");
         } else {
             inquisitor.disableAbilities();
-            playerWW.sendMessageWithKey("werewolf.role.inquisitor.smite_fail");
+            playerWW.sendMessageWithKey("havwila.role.inquisitor.smite_fail");
         }
     }
 }

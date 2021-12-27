@@ -2,6 +2,7 @@ package io.havwila.addonsLG.roles;
 
 import fr.minuskube.inv.ClickableItem;
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
+import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.IConfiguration;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
@@ -22,6 +23,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.Format;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -59,10 +61,10 @@ public class Hunter extends RoleVillage implements IAffectedPlayers, IPower {
     @Override
     public @NotNull String getDescription() {
         DescriptionBuilder descBuilder = new DescriptionBuilder(game, this)
-                .setDescription(game.translate("werewolf.role.hunter_havwila.description"))
-                .setItems(game.translate("werewolf.role.hunter_havwila.items"));
-        if (game.getConfig().isConfigActive("werewolf.role.hunter_havwila.can_shoot")) {
-            descBuilder = descBuilder.addExtraLines(game.translate("werewolf.role.hunter_havwila.description_shoot"));
+                .setDescription(game.translate("havwila.role.hunter.description"))
+                .setItems(game.translate("havwila.role.hunter.items"));
+        if (game.getConfig().isConfigActive("havwila.role.hunter.can_shoot")) {
+            descBuilder = descBuilder.addExtraLines(game.translate("havwila.role.hunter.description_shoot"));
         }
         return descBuilder.build();
     }
@@ -83,9 +85,9 @@ public class Hunter extends RoleVillage implements IAffectedPlayers, IPower {
         IPlayerWW playerWW = event.getPlayerWW();
 
         if (playerWW.equals(this.getPlayerWW())) {
-            if (game.getConfig().isConfigActive("werewolf.role.hunter_havwila.can_shoot")) {
+            if (game.getConfig().isConfigActive("havwila.role.hunter.can_shoot")) {
                 this.setPower(true);
-                getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.perform");
+                getPlayerWW().sendMessageWithKey("havwila.role.hunter.perform");
                 BukkitUtils.scheduleSyncDelayedTask(() -> {
                     getPlayerWW().sendMessageWithKey("werewolf.check.end_selection");
                     setPower(false);
@@ -145,21 +147,21 @@ public class Hunter extends RoleVillage implements IAffectedPlayers, IPower {
             switch (clue.getCount()) {
                 case 6:
                     affectedPlayers.add(clue.getPlayerWW());
-                    getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.clue_player", clue.getPlayerWW().getName(),
-                            Integer.toString(clue.getNearbyPlayers().size()));
+                    getPlayerWW().sendMessageWithKey("havwila.role.hunter.clue_player", Formatter.format("&player&", clue.getPlayerWW().getName()),
+                            Formatter.format("&number&", Integer.toString(clue.getNearbyPlayers().size())));
                     return;
                 case 12:
-                    getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.clue_role", clue.getPlayerWW().getName(),
-                            game.translate(clue.getPlayerWW().getRole().getKey()),
-                            buildNamesString(clue.getNamesList(), 1));
+                    getPlayerWW().sendMessageWithKey("havwila.role.hunter.clue_role", Formatter.format("&victim&", clue.getPlayerWW().getName()),
+                            Formatter.format("&role&", game.translate(clue.getPlayerWW().getRole().getKey())),
+                            Formatter.format("&players&", buildNamesString(clue.getNamesList(), 1)));
                     return;
                 case 18:
-                    getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.clue_nearby", buildNamesString(clue.getNamesList(), 2),
-                            clue.getPlayerWW().getName());
+                    getPlayerWW().sendMessageWithKey("havwila.role.hunter.clue_nearby", Formatter.format("&players&",  buildNamesString(clue.getNamesList(), 2)),
+                            Formatter.format("&victim&", clue.getPlayerWW().getName()));
                     return;
                 case 24:
-                    getPlayerWW().sendMessageWithKey("werewolf.role.hunter_havwila.clue_nearby", buildNamesString(clue.getNamesList(), 3),
-                            clue.getPlayerWW().getName());
+                    getPlayerWW().sendMessageWithKey("havwila.role.hunter.clue_nearby", Formatter.format("&players&", buildNamesString(clue.getNamesList(), 3)),
+                            Formatter.format("&victim&", clue.getPlayerWW().getName()));
                     clues.remove(clue);
                     return;
                 default:
@@ -197,13 +199,13 @@ public class Hunter extends RoleVillage implements IAffectedPlayers, IPower {
 
         return ClickableItem.of(new ItemBuilder(Material.BOW)
                 .setLore(game.translate(
-                        config.isConfigActive("werewolf.role.hunter_havwila.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
-                .setDisplayName(game.translate("werewolf.role.hunter_havwila.can_shoot"))
+                        config.isConfigActive("havwila.role.hunter.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                .setDisplayName(game.translate("havwila.role.hunter.can_shoot"))
                 .build(), e -> {
-            config.setConfig("werewolf.role.hunter_havwila.can_shoot", !config.isConfigActive("werewolf.role.hunter_havwila.can_shoot"));
+            config.setConfig("havwila.role.hunter.can_shoot", !config.isConfigActive("havwila.role.hunter.can_shoot"));
 
             e.setCurrentItem(new ItemBuilder(e.getCurrentItem())
-                    .setLore(game.translate(config.isConfigActive("werewolf.role.hunter_havwila.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
+                    .setLore(game.translate(config.isConfigActive("havwila.role.hunter.can_shoot") ? "werewolf.utils.enable" : "werewolf.utils.disable"))
                     .build());
         });
     }

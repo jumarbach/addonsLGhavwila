@@ -27,7 +27,7 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription("werewolf.role.mastermind.description").build();
+        return new DescriptionBuilder(game, this).setDescription("havwila.role.mastermind.description").build();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
         }
 
         if (guessedPlayers.contains(targetWW) || failedPlayers.contains(targetWW)) {
-            getPlayerWW().sendMessageWithKey("werewolf.role.mastermind.repeat_target");
+            getPlayerWW().sendMessageWithKey("havwila.role.mastermind.repeat_target");
             return false;
         }
         return true;
@@ -61,11 +61,11 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
 
         if (targetWW.getRole().getKey().equals(key)) {
             guessedPlayers.add(targetWW);
-            getPlayerWW().sendMessageWithKey("werewolf.role.mastermind.guess_success", Formatter.format("&player&", targetWW.getName()));
+            getPlayerWW().sendMessageWithKey("havwila.role.mastermind.guess_success", Formatter.format("&player&", targetWW.getName()));
             getPlayerWW().addPlayerMaxHealth(2);
         } else {
             failedPlayers.add(targetWW);
-            getPlayerWW().sendMessageWithKey("werewolf.role.mastermind.guess_fail");
+            getPlayerWW().sendMessageWithKey("havwila.role.mastermind.guess_fail");
             getPlayerWW().removePlayerMaxHealth(2);
         }
     }

@@ -1,6 +1,7 @@
 package io.havwila.addonsLG.roles;
 
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
+import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Aura;
@@ -26,7 +27,7 @@ public class Inquisitor extends RoleWithLimitedSelectionDuration implements IAff
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.inquisitor.description")).build();
+        return new DescriptionBuilder(game, this).setDescription(game.translate("havwila.role.inquisitor.description")).build();
     }
 
     @Override
@@ -66,8 +67,7 @@ public class Inquisitor extends RoleWithLimitedSelectionDuration implements IAff
         setPower(true);
 
         this.getPlayerWW().sendMessageWithKey(
-                "werewolf.role.inquisitor.smite_message",
-                Utils.conversion(
-                        game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey())));
+                "havwila.role.inquisitor.smite_message",
+                Formatter.format("&time&", Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey()))));
     }
 }

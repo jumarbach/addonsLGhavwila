@@ -41,7 +41,7 @@ public class GuessInventory implements InventoryProvider {
                 .manager(JavaPlugin.getPlugin(Main.class).getAPI().getInvManager())
                 .provider(new GuessInventory(targetWW, categories))
                 .size(6, 9)
-                .title(JavaPlugin.getPlugin(Main.class).getAPI().getWereWolfAPI().translate("werewolf.guess.title",
+                .title(JavaPlugin.getPlugin(Main.class).getAPI().getWereWolfAPI().translate("havwila.guess.title",
                         Formatter.format("&player&", targetWW.getName())))
                 .closeable(true)
                 .build();
@@ -140,11 +140,14 @@ public class GuessInventory implements InventoryProvider {
             contents.set(4, 5, null);
             contents.set(4, 7, null);
             contents.set(4, 8, null);
-            contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.ARROW).setDisplayName(game.translate("werewolf.menu.roles.previous", page, pagination.isFirst() ? page : page - 1)).build(),
+            contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.ARROW).
+                            setDisplayName(game.translate("werewolf.menu.roles.previous", Formatter.format("&current&", page), Formatter.format("&previous&", pagination.isFirst() ? page : page - 1))).build(),
                     e -> getInventory(targetWW, categories).open(player, pagination.previous().getPage())));
-            contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.ARROW).setDisplayName(game.translate("werewolf.menu.roles.next", page, pagination.isLast() ? page : page + 1)).build(),
+            contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.ARROW)
+                            .setDisplayName(game.translate("werewolf.menu.roles.next", Formatter.format("&current&", page), Formatter.format("&next&", pagination.isLast() ? page : page + 1))).build(),
                     e -> getInventory(targetWW, categories).open(player, pagination.next().getPage())));
-            contents.set(4, 4, ClickableItem.empty(new ItemBuilder(UniversalMaterial.SIGN.getType()).setDisplayName(game.translate("werewolf.menu.roles.current", page, items.size() / 36 + 1)).build()));
+            contents.set(4, 4, ClickableItem.empty(new ItemBuilder(UniversalMaterial.SIGN.getType())
+                    .setDisplayName(game.translate("werewolf.menu.roles.current", Formatter.format("&current&", page), Formatter.format("&sum&", items.size() / 36 + 1))).build()));
         } else {
             int i = 0;
             for (ClickableItem clickableItem : items) {

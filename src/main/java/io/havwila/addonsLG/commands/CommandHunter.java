@@ -39,13 +39,13 @@ public class CommandHunter implements ICommand {
         }
 
         if (playerWW.getLastKiller().isPresent() && playerWW.getLastKiller().get().equals(targetWW)) {
-            playerWW.sendMessageWithKey("werewolf.role.hunter_havwila.invalid_target");
+            playerWW.sendMessageWithKey("havwila.role.hunter.invalid_target");
             return;
         }
         ((IPower) playerWW.getRole()).setPower(false);
 
         targetWW.removePlayerHealth(10);
-        Bukkit.broadcastMessage(game.translate("werewolf.role.hunter_havwila.success", Formatter.format("&target&", targetWW.getName())));
+        Bukkit.broadcastMessage(game.translate("havwila.role.hunter.success", Formatter.format("&target&", targetWW.getName())));
 
     }
 }

@@ -1,6 +1,7 @@
 package io.havwila.addonsLG.roles;
 
 import io.github.ph1lou.werewolfapi.DescriptionBuilder;
+import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.Aura;
@@ -37,16 +38,28 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
     @Override
     public @NotNull String getDescription() {
         //return game.translate("werewolf.role.witness.description");
-        return new DescriptionBuilder(game, this).setDescription(game.translate("werewolf.role.witness.description"))
-                .addExtraLines(game.translate("werewolf.role.witness.culprit_name",
+        /*return new DescriptionBuilder(game, this).setDescription(game.translate("havwila.role.witness.description"))
+                .addExtraLines(game.translate("havwila.role.witness.culprit_name",
                         affectedPlayer.isEmpty() ? (power ?
-                                game.translate("werewolf.role.witness.culprit_unknown", Utils.conversion(
-                                        game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST.getKey())))
+                                game.translate("havwila.role.witness.culprit_unknown", Formatter.format("&time&", Utils.conversion(
+                                        game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST.getKey()))))
                                 :
-                                game.translate("werewolf.role.witness.culprit_dead"))
+                                game.translate("havwila.role.witness.culprit_dead"))
                                 :
                                 affectedPlayer.get(0).getName()))
-                .build();
+                .build();*/
+        DescriptionBuilder descBuilder = new DescriptionBuilder(game, this).setDescription(game.translate("havwila.role.witness.description"));
+        if (affectedPlayer.isEmpty()) {
+            if (power) {
+                descBuilder.addExtraLines(game.translate("havwila.role.witness.culprit_unknown", Formatter.format("&time&",
+                                Utils.conversion(game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST.getKey())))));
+            } else {
+                descBuilder.addExtraLines(game.translate("havwila.role.witness.culprit_dead"));
+            }
+        } else {
+            descBuilder.addExtraLines(game.translate("havwila.role.witness.culprit_name", Formatter.format("&player&", affectedPlayer.get(0).getName())));
+        }
+        return descBuilder.build();
     }
 
     @Override
@@ -106,8 +119,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
         IPlayerWW culprit = wolves.get((int) Math.floor(new Random(System.currentTimeMillis()).nextFloat()*wolves.size()));
         addAffectedPlayer(culprit);
 
-        Player player = Bukkit.getPlayer(getPlayerUUID());
-        player.sendMessage(game.translate("werewolf.role.witness.reveal_culprit",culprit.getName()));
+        getPlayerWW().sendMessageWithKey("havwila.role.witness.reveal_culprit", Formatter.format("&player&", culprit.getName()));
 
     }
 
@@ -122,7 +134,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
         this.power = false;
 
         getPlayerWW().removePlayerMaxHealth(8);
-        getPlayerWW().sendMessageWithKey("werewolf.role.witness.culprit_death");
+        getPlayerWW().sendMessageWithKey("havwila.role.witness.culprit_death");
     }
 
     @EventHandler
@@ -137,7 +149,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
 
         if(getPlayerWW().isState(StatePlayer.DEATH)) return;
 
-        getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", thief.getName());
+        getPlayerWW().sendMessageWithKey("havwila.role.witness.change", Formatter.format("&player&", thief.getName()));
     }
 
     @EventHandler
@@ -146,7 +158,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
         if (!event.getThiefWW().equals(getPlayerWW())) return;
 
         if(power) {
-            getPlayerWW().sendMessageWithKey("werewolf.role.witness.reveal_culprit", getAffectedPlayers().get(0).getName());
+            getPlayerWW().sendMessageWithKey("havwila.role.witness.reveal_culprit", Formatter.format("&player&", getAffectedPlayers().get(0).getName()));
         }
         else {
             getPlayerWW().removePlayerMaxHealth(8);
@@ -168,14 +180,14 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
             addAffectedPlayer(event.getPlayerWW2());
 
             if (isAbilityEnabled()) {
-                getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", event.getPlayerWW2().getName());
+                getPlayerWW().sendMessageWithKey("havwila.role.witness.change", Formatter.format("&player&", event.getPlayerWW2().getName()));
             }
         } else if (affectedPlayer.contains(event.getPlayerWW2())) {
             removeAffectedPlayer(event.getPlayerWW2());
             addAffectedPlayer(event.getPlayerWW1());
 
             if (isAbilityEnabled()) {
-                getPlayerWW().sendMessageWithKey("werewolf.role.witness.change", event.getPlayerWW1().getName());
+                getPlayerWW().sendMessageWithKey("havwila.role.witness.change", Formatter.format("&player&", event.getPlayerWW1().getName()));
             }
         }
     }

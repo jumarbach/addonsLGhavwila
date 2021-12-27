@@ -33,8 +33,8 @@ public class SilencerWerewolf extends RoleWereWolf implements IPower, IGuesser, 
     @Override
     public @NotNull String getDescription() {
         return new DescriptionBuilder(game, this)
-                .setDescription("werewolf.role.silencer_werewolf.description")
-                .setCommand("werewolf.role.silencer_werewolf.desc_command")
+                .setDescription("havwila.role.silencer_werewolf.description")
+                .setCommand("havwila.role.silencer_werewolf.desc_command")
                 .setPower("werewolf.description.werewolf")
                 .build();
     }
@@ -101,7 +101,7 @@ public class SilencerWerewolf extends RoleWereWolf implements IPower, IGuesser, 
                 .filter(playerWW->playerWW.getRole().getCamp() == Camp.WEREWOLF)
                 .count();
         if (nWW >= nVillagers) {
-            getPlayerWW().sendMessageWithKey("werewolf.role.silencer_werewolf.more_wolves");
+            getPlayerWW().sendMessageWithKey("havwila.role.silencer_werewolf.more_wolves");
             return false;
         }
         return true;
@@ -113,10 +113,10 @@ public class SilencerWerewolf extends RoleWereWolf implements IPower, IGuesser, 
         if (targetWW.getRole().getKey().equals(key)) {
             affectedPlayers.add(targetWW);
             targetWW.getRole().disableAbilities();
-            getPlayerWW().sendMessageWithKey("werewolf.role.silencer_werewolf.guess_success", Formatter.format("&player&", targetWW.getName()));
-            targetWW.sendMessageWithKey("werewolf.role.silencer_werewolf.disable_target");
+            getPlayerWW().sendMessageWithKey("havwila.role.silencer_werewolf.guess_success", Formatter.format("&player&", targetWW.getName()));
+            targetWW.sendMessageWithKey("havwila.role.silencer_werewolf.disable_target");
         } else {
-            getPlayerWW().sendMessageWithKey("werewolf.role.silencer_werewolf.guess_fail");
+            getPlayerWW().sendMessageWithKey("havwila.role.silencer_werewolf.guess_fail");
             getPlayerWW().removePlayerMaxHealth(2);
         }
     }
@@ -132,7 +132,7 @@ public class SilencerWerewolf extends RoleWereWolf implements IPower, IGuesser, 
     public void onNight(NightEvent event) {
         if (!failedGuess && isAbilityEnabled()) {
             power = true;
-            getPlayerWW().sendMessageWithKey("werewolf.role.silencer_werewolf.power");
+            getPlayerWW().sendMessageWithKey("havwila.role.silencer_werewolf.power");
         }
     }
 }
