@@ -5,14 +5,14 @@ import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
 import io.havwila.addonsLG.roles.Inquisitor;
+import io.havwila.addonsLG.roles.Mastermind;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class CommandHunter implements ICommand {
+public class CommandMastermindDisable implements ICommand {
 
     @Override
     public void execute(WereWolfAPI game, Player player, String[] args) {
@@ -23,6 +23,7 @@ public class CommandHunter implements ICommand {
         if (playerWW == null) {
             return;
         }
+        Mastermind mastermind = (Mastermind) playerWW.getRole();
 
         Player playerArg = Bukkit.getPlayer(args[0]);
 
@@ -33,19 +34,20 @@ public class CommandHunter implements ICommand {
         UUID argUUID = playerArg.getUniqueId();
         IPlayerWW targetWW = game.getPlayerWW(argUUID).orElse(null);
 
-        if (targetWW == null || !targetWW.isState(StatePlayer.ALIVE)) {
+        if (targetWW == null || targetWW.isState(StatePlayer.DEATH)) {
             playerWW.sendMessageWithKey("werewolf.check.player_not_found");
             return;
         }
 
-        if (playerWW.getLastKiller().isPresent() && playerWW.getLastKiller().get().equals(targetWW)) {
-            playerWW.sendMessageWithKey("havwila.role.hunter.invalid_target");
+        if (!mastermind.getAffectedPlayers().contains(targetWW)) {
+            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW));
             return;
         }
-        ((IPower) playerWW.getRole()).setPower(false);
 
-        targetWW.removePlayerHealth(10);
-        Bukkit.broadcastMessage(game.translate("havwila.role.hunter.success", Formatter.format("&target&", targetWW.getName())));
-
+        playerWW.removePlayerMaxHealth(2);
+        targetWW.getRole().disableAbilities();
+        playerWW.sendMessageWithKey("havwila.role.mastermind.disable_perform",
+                Formatter.format("&player&", targetWW.getName()));
+        targetWW.sendMessageWithKey("havwila.role.mastermind.disable_target");
     }
 }

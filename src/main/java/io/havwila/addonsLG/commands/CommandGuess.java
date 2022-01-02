@@ -1,18 +1,18 @@
 package io.havwila.addonsLG.commands;
 
-import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.enums.Category;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
-import io.havwila.addonsLG.roles.Inquisitor;
+import io.havwila.addonsLG.guess.GuessInventory;
+import io.havwila.addonsLG.guess.IGuesser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
+import java.util.*;
 
-public class CommandHunter implements ICommand {
+public class CommandGuess implements ICommand {
 
     @Override
     public void execute(WereWolfAPI game, Player player, String[] args) {
@@ -33,19 +33,29 @@ public class CommandHunter implements ICommand {
         UUID argUUID = playerArg.getUniqueId();
         IPlayerWW targetWW = game.getPlayerWW(argUUID).orElse(null);
 
-        if (targetWW == null || !targetWW.isState(StatePlayer.ALIVE)) {
+        if (targetWW == null || targetWW.isState(StatePlayer.DEATH)) {
             playerWW.sendMessageWithKey("werewolf.check.player_not_found");
             return;
         }
 
-        if (playerWW.getLastKiller().isPresent() && playerWW.getLastKiller().get().equals(targetWW)) {
-            playerWW.sendMessageWithKey("havwila.role.hunter.invalid_target");
+        if (!(playerWW.getRole() instanceof IGuesser)) {
+            playerWW.sendMessageWithKey("werewolf.check.permission_denied");
             return;
         }
-        ((IPower) playerWW.getRole()).setPower(false);
 
-        targetWW.removePlayerHealth(10);
-        Bukkit.broadcastMessage(game.translate("havwila.role.hunter.success", Formatter.format("&target&", targetWW.getName())));
+        IGuesser role = (IGuesser) playerWW.getRole();
 
+        if (!role.canGuess(targetWW)) return;
+
+        Set<Category> categories = role.getAvailableCategories();
+        if (categories == null || categories.isEmpty()) {
+            categories = new HashSet<>();
+            categories.add(Category.VILLAGER);
+            categories.add(Category.NEUTRAL);
+            categories.add(Category.WEREWOLF);
+            categories.add(Category.ADDONS);
+        }
+
+        GuessInventory.getInventory(targetWW, categories).open(player);
     }
 }

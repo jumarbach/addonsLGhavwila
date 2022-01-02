@@ -12,6 +12,7 @@ import io.github.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
 import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
 import io.github.ph1lou.werewolfapi.events.game.utils.WinConditionsCheckEvent;
+import io.github.ph1lou.werewolfapi.events.random_events.SwapEvent;
 import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
 import io.github.ph1lou.werewolfapi.events.werewolf.NewWereWolfEvent;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
@@ -57,15 +58,15 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         if (!isTransformed && !staysNeutral ) {
             DescriptionBuilder descriptionBuilder = new DescriptionBuilder(game, this)
-                    .setDescription(game.translate("werewolf.role.romulus_remus.description_naive"))
-                    .setPower(game.translate("werewolf.role.romulus_remus.power_naive"));
+                    .setDescription(game.translate("havwila.role.romulus_remus.description_naive"))
+                    .setPower(game.translate("havwila.role.romulus_remus.power_naive"));
             getBrother().ifPresent(brother -> {
                 descriptionBuilder.addExtraLines(
-                        game.translate("werewolf.role.romulus_remus.brother_name",
+                        game.translate("havwila.role.romulus_remus.brother_name",
                                 Formatter.format("&name&", brother.getName())));
             });
             getMother().ifPresent(mother -> {
-                descriptionBuilder.addExtraLines(game.translate("werewolf.role.romulus_remus.mother_role",
+                descriptionBuilder.addExtraLines(game.translate("havwila.role.romulus_remus.mother_role",
                         Formatter.format("&role&", game.translate(mother.getRole().getKey()))));
             });
             return descriptionBuilder.build();
@@ -74,16 +75,16 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         if (isTransformed) {
             if (isRomulus) {
                 DescriptionBuilder descriptionBuilder = new DescriptionBuilder(game, this)
-                        .setDescription(game.translate("werewolf.role.romulus_remus.description_romulus"));
+                        .setDescription(game.translate("havwila.role.romulus_remus.description_romulus"));
                 if (killedBrother) {
-                    descriptionBuilder.addExtraLines(game.translate("werewolf.role.romulus_remus.strength"));
+                    descriptionBuilder.addExtraLines(game.translate("havwila.role.romulus_remus.strength"));
                 }
                 return descriptionBuilder.build();
             } else {
                 DescriptionBuilder descriptionBuilder = new DescriptionBuilder(game, this)
-                        .setDescription(game.translate("werewolf.role.romulus_remus.description_remus"));
+                        .setDescription(game.translate("havwila.role.romulus_remus.description_remus"));
                 if (killedBrother) {
-                    descriptionBuilder.addExtraLines(game.translate("werewolf.role.romulus_remus.strength"));
+                    descriptionBuilder.addExtraLines(game.translate("havwila.role.romulus_remus.strength"));
                 }
                 return descriptionBuilder.build();
             }
@@ -91,13 +92,13 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         if (staysNeutral) {
             DescriptionBuilder descriptionBuilder = new DescriptionBuilder(game, this)
-                    .setDescription(game.translate("werewolf.role.romulus_remus.description_neutral"));
+                    .setDescription(game.translate("havwila.role.romulus_remus.description_neutral"));
             if (killedBrother) {
-                descriptionBuilder.addExtraLines(game.translate("werewolf.role.romulus_remus.weakness"));
+                descriptionBuilder.addExtraLines(game.translate("havwila.role.romulus_remus.weakness"));
             }
             return descriptionBuilder.build();
         }
-        return "This shouldn't be shown. Please inform havwila of the sequence of events that affected this role in this game";
+        return "This is a bug. Please inform havwila of the sequence of events that affected this role in this game";
     }
 
     @Override
@@ -171,7 +172,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
                         if (isAbilityEnabled()) {
                             getPlayerWW().addPotionModifier(PotionModifier.add(PotionEffectType.INCREASE_DAMAGE, "romulus_remus_strength"));
                         }
-                        getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.killed_brother_strength");
+                        getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.killed_brother_strength");
                         if (!isRomulus) {
                             if (!super.isWereWolf()) {
                                 Bukkit.getPluginManager().callEvent(new NewWereWolfEvent(getPlayerWW()));
@@ -179,13 +180,13 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
                         }
                     } else {
                         getPlayerWW().addPotionModifier(PotionModifier.add(PotionEffectType.WEAKNESS, "romulus_remus_weakness"));
-                        getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.killed_brother_weakness");
+                        getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.killed_brother_weakness");
                     }
                 }
             });
             if (!isTransformed) {
                 staysNeutral = true;
-                getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.brother_died");
+                getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.brother_died");
             }
         }
 
@@ -196,12 +197,12 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         if (playerWW.equals(getMother().orElse(null))) {
             setTransformed(true);
             this.getPlayerWW().addPotionModifier(PotionModifier.remove(PotionEffectType.DAMAGE_RESISTANCE, "romulus_remus_resistance"));
-            getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.mother_dead");
+            getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.mother_dead");
             if (!isRomulus) {
                 playerWW.getLastKiller().ifPresent(iPlayerWW -> {
                     if (getPlayerWW().equals(iPlayerWW)) {
                         staysNeutral = true;
-                        getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.slayed_mother");
+                        getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.slayed_mother");
                     }
                 });
             }
@@ -222,7 +223,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
                 .stream()
                 .filter(playerWW -> playerWW.isState(StatePlayer.ALIVE))
                 .filter(playerWW -> !playerWW.getRole().equals(this))
-                .filter(playerWW -> playerWW.getRole().isKey("werewolf.role.romulus_remus.display"))
+                .filter(playerWW -> playerWW.getRole().isKey("havwila.role.romulus_remus.display"))
                 .filter(playerWW -> playerWW.getRole() instanceof RomulusRemus && !((RomulusRemus) playerWW.getRole()).isInitialized())
                 .collect(Collectors.toList());
 
@@ -273,7 +274,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         addAffectedPlayer(mother);
 
         isInitialized = true;
-        getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.family_init");
+        getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.family_init");
     }
 
     public Optional<IPlayerWW> getBrother() {
@@ -390,7 +391,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         int i = affectedPlayers.indexOf(playerWW);
         affectedPlayers.set(i, thiefWW);
 
-        getPlayerWW().sendMessageWithKey("werewolf.role.romulus_remus.family_change");
+        getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.family_change");
     }
 
     @EventHandler
@@ -412,7 +413,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         if (game.getPlayerSize() == 3) {
             event.setCancelled(true);
-            event.setVictoryTeam("werewolf.role.romulus_remus.display");
+            event.setVictoryTeam("havwila.role.romulus_remus.display");
         }
 
     }
@@ -449,7 +450,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         if (mother.getLocation().distance(location) < 20) {
             BukkitUtils.scheduleSyncDelayedTask(() -> {
-                mother.sendMessageWithKey("werewolf.role.romulus_remus.mother_message"); }, 20 * 60 * 2);
+                mother.sendMessageWithKey("havwila.role.romulus_remus.mother_message"); }, 20 * 60 * 2);
             metMother = true;
         }
     }
@@ -463,5 +464,34 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
         }
 
         this.getPlayerWW().addPotionModifier(PotionModifier.remove(PotionEffectType.DAMAGE_RESISTANCE,"romulus_remus_strength"));
+    }
+
+    @EventHandler
+    public void onSwap(SwapEvent event) {
+        if (!isInitialized) return;
+
+        IPlayerWW playerWW1 = event.getPlayerWW1();
+        IPlayerWW playerWW2 = event.getPlayerWW2();
+        boolean change = false;
+
+        if (getMother().equals(playerWW1)) {
+            affectedPlayers.set(1, playerWW2);
+            change = true;
+        } else if (getMother().equals(playerWW2)) {
+            affectedPlayers.set(1, playerWW1);
+            change = true;
+        }
+
+        if (getBrother().equals(playerWW1)) {
+            affectedPlayers.set(0, playerWW2);
+            change = true;
+        } else if (getBrother().equals(playerWW2)) {
+            affectedPlayers.set(0, playerWW1);
+            change = true;
+        }
+
+        if (change) {
+            getPlayerWW().sendMessageWithKey("havwila.role.romulus_remus.family_change");
+        }
     }
 }

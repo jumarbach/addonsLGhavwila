@@ -1,5 +1,6 @@
 package io.havwila.addonsLG.commands;
 
+import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
@@ -27,7 +28,7 @@ public class CommandCroupier implements ICommand {
         List<IPlayerWW> allPlayers = game.getPlayersWW().stream().filter(p -> p.isState(StatePlayer.ALIVE)).collect(Collectors.toList());
 
         if (allPlayers.size() < 5) {
-            playerWW.sendMessageWithKey("werewolf.role.croupier.not_enough_players");
+            playerWW.sendMessageWithKey("havwila.role.croupier.not_enough_players");
             return;
         }
 
@@ -47,7 +48,7 @@ public class CommandCroupier implements ICommand {
         }
 
         if (targetWW == playerWW) {
-            playerWW.sendMessageWithKey("werewolf.role.croupier.yourself");
+            playerWW.sendMessageWithKey("havwila.role.croupier.yourself");
             return;
         }
 
@@ -59,7 +60,7 @@ public class CommandCroupier implements ICommand {
             targetedPlayers.add(affectedPlayers.next());
             if (!affectedPlayers.hasNext()) {
                 ((IPower) croupier).setPower(false);
-                playerWW.sendMessageWithKey("werewolf.role.croupier.all_exposed");
+                playerWW.sendMessageWithKey("havwila.role.croupier.all_exposed");
                 return;
             }
             IPlayerWW p = affectedPlayers.next();
@@ -69,7 +70,7 @@ public class CommandCroupier implements ICommand {
         }
 
         if (targetedPlayers.contains(targetWW)) {
-            playerWW.sendMessageWithKey("werewolf.role.croupier.repeated_target");
+            playerWW.sendMessageWithKey("havwila.role.croupier.repeated_target");
             return;
         }
         ((IAffectedPlayers) croupier).addAffectedPlayer(targetWW);
@@ -78,7 +79,7 @@ public class CommandCroupier implements ICommand {
 
         allPlayers.removeAll(exposedPlayers);
         if (allPlayers.isEmpty()) {
-            playerWW.sendMessageWithKey("werewolf.role.croupier.all_exposed");
+            playerWW.sendMessageWithKey("havwila.role.croupier.all_exposed");
             return;
         }
 
@@ -122,11 +123,12 @@ public class CommandCroupier implements ICommand {
         allPlayers.remove(targetWW);
 
         //IPlayerWW receiver = allPlayers.get(game.getRandom().nextInt(allPlayers.size()));
-
-        targetWW.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),
-                game.translate(roles.get(1)), game.translate(roles.get(2)));
+        targetWW.sendMessageWithKey("havwila.role.croupier.card", Formatter.format("&player&", pRevealed.getName()),
+                Formatter.format("&role1&", game.translate(roles.get(0))),
+                Formatter.format("&role2&", game.translate(roles.get(1))),
+                Formatter.format("&role3&", game.translate(roles.get(2))));
         //receiver.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),game.translate(roles.get(1)), game.translate(roles.get(2)));
 
-        playerWW.sendMessageWithKey("werewolf.role.croupier.confirm");
+        playerWW.sendMessageWithKey("havwila.role.croupier.confirm");
     }
 }
