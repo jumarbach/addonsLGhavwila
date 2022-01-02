@@ -48,7 +48,7 @@ public class CommandCroupier implements ICommand {
         }
 
         if (targetWW == playerWW) {
-            playerWW.sendMessageWithKey("werewolf.role.croupier.yourself");
+            playerWW.sendMessageWithKey("havwila.role.croupier.yourself");
             return;
         }
 
@@ -129,6 +129,6 @@ public class CommandCroupier implements ICommand {
                 Formatter.format("&role3&", game.translate(roles.get(2))));
         //receiver.sendMessageWithKey("werewolf.role.croupier.card", pRevealed.getName(), game.translate(roles.get(0)),game.translate(roles.get(1)), game.translate(roles.get(2)));
 
-        playerWW.sendMessageWithKey("werewolf.role.croupier.confirm");
+        playerWW.sendMessageWithKey("havwila.role.croupier.confirm");
     }
 }

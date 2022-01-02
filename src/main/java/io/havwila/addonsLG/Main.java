@@ -8,6 +8,7 @@ import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
@@ -82,6 +83,12 @@ public class Main extends JavaPlugin {
 
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.guess.command", new CommandGuess())
                     .addStateWW(StateGame.GAME).addArgNumbers(1));
+
+            registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.mastermind.command_disable", new CommandMastermindDisable())
+                    .addStateWW(StateGame.GAME).addArgNumbers(1).setRequiredAbilityEnabled());
+
+            registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.mastermind.command_swap", new CommandMastermindSwap())
+                    .addStateWW(StateGame.GAME).setRequiredAbilityEnabled().addArgNumbers(2));
 
             registerManager.registerConfig(new ConfigRegister(addonKey, "havwila.role.croupier.croupier_every_other_day")
                     .unSetAppearInMenu());

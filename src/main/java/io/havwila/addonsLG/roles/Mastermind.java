@@ -12,13 +12,14 @@ import io.github.ph1lou.werewolfapi.rolesattributs.RoleNeutral;
 import io.havwila.addonsLG.guess.IGuesser;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayers, IPower {
 
-    private List<IPlayerWW> guessedPlayers;
-    private List<IPlayerWW> failedPlayers;
+    private List<IPlayerWW> guessedPlayers = new ArrayList<>();
+    private List<IPlayerWW> failedPlayers = new ArrayList<>();
     private boolean power = true;
 
     public Mastermind(WereWolfAPI game, IPlayerWW playerWW, String key) {
@@ -27,7 +28,8 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
 
     @Override
     public @NotNull String getDescription() {
-        return new DescriptionBuilder(game, this).setDescription("havwila.role.mastermind.description").build();
+        return new DescriptionBuilder(game, this)
+                .setDescription(game.translate("havwila.role.mastermind.description")).build();
     }
 
     @Override

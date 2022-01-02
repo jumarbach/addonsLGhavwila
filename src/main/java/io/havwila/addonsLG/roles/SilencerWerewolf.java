@@ -33,9 +33,9 @@ public class SilencerWerewolf extends RoleWereWolf implements IPower, IGuesser, 
     @Override
     public @NotNull String getDescription() {
         return new DescriptionBuilder(game, this)
-                .setDescription("havwila.role.silencer_werewolf.description")
-                .setCommand("havwila.role.silencer_werewolf.desc_command")
-                .setPower("werewolf.description.werewolf")
+                .setDescription(game.translate("havwila.role.silencer_werewolf.description"))
+                .setCommand(game.translate("havwila.role.silencer_werewolf.desc_command"))
+                .setPower(game.translate("werewolf.description.werewolf"))
                 .build();
     }
 

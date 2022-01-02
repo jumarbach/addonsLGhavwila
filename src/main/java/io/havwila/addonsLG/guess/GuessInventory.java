@@ -33,6 +33,15 @@ public class GuessInventory implements InventoryProvider {
     public GuessInventory(IPlayerWW targetWW, Set<Category> categories) {
         this.targetWW = targetWW;
         this.categories = categories;
+        if (!categories.contains(Category.VILLAGER)) {
+            if (categories.contains(Category.WEREWOLF)) {
+                category = Category.WEREWOLF;
+            } else if (categories.contains(Category.NEUTRAL)) {
+                category = Category.NEUTRAL;
+            } else {
+                category = Category.ADDONS;
+            }
+        }
     }
 
     public static SmartInventory getInventory(IPlayerWW targetWW, Set<Category> categories) {
@@ -61,20 +70,28 @@ public class GuessInventory implements InventoryProvider {
         List<String> lore = new ArrayList<>(Arrays.asList(game.translate("werewolf.menu.left"), game.translate("werewolf.menu.right")));
 
         if (categories.contains(Category.ADDONS)) {
-            contents.set(5, 7, ClickableItem.of((new ItemBuilder(Category.ADDONS == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate("werewolf.categories.addons")).setAmount(1).build()), e -> this.category = Category.ADDONS));
-            category = Category.ADDONS;
+            contents.set(5, 7, ClickableItem.of(
+                    (new ItemBuilder(Category.ADDONS == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK)
+                            .setDisplayName(game.translate("werewolf.categories.addons")).setAmount(1).build()),
+                    e -> this.category = Category.ADDONS));
         }
         if (categories.contains(Category.NEUTRAL)) {
-            contents.set(5, 5, ClickableItem.of((new ItemBuilder(Category.NEUTRAL == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.NEUTRAL.getKey())).setAmount(1).build()), e -> this.category = Category.NEUTRAL));
-            category = Category.NEUTRAL;
+            contents.set(5, 5, ClickableItem.of(
+                    (new ItemBuilder(Category.NEUTRAL == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK)
+                            .setDisplayName(game.translate(Camp.NEUTRAL.getKey())).setAmount(1).build()),
+                    e -> this.category = Category.NEUTRAL));
         }
         if (categories.contains(Category.WEREWOLF)) {
-            contents.set(5, 1, ClickableItem.of((new ItemBuilder(Category.WEREWOLF == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.WEREWOLF.getKey())).setAmount(1).build()), e -> this.category = Category.WEREWOLF));
-            category = Category.WEREWOLF;
+            contents.set(5, 1, ClickableItem.of(
+                    (new ItemBuilder(Category.WEREWOLF == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK)
+                            .setDisplayName(game.translate(Camp.WEREWOLF.getKey())).setAmount(1).build()),
+                    e -> this.category = Category.WEREWOLF));
         }
         if (categories.contains(Category.VILLAGER)) {
-            contents.set(5, 3, ClickableItem.of((new ItemBuilder(Category.VILLAGER == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK).setDisplayName(game.translate(Camp.VILLAGER.getKey())).setAmount(1).build()), e -> this.category = Category.VILLAGER));
-            category = Category.VILLAGER;
+            contents.set(5, 3, ClickableItem.of(
+                    (new ItemBuilder(Category.VILLAGER == this.category ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK)
+                            .setDisplayName(game.translate(Camp.VILLAGER.getKey())).setAmount(1).build()),
+                    e -> this.category = Category.VILLAGER));
         }
 
 

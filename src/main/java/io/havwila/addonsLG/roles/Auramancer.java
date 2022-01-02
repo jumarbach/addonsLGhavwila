@@ -60,9 +60,9 @@ public class Auramancer extends Role {
                 if (!knownPlayer.getRole().getAura().equals(Aura.LIGHT)) {
                     knownPlayer = null;
                 } else {
-                    getPlayerWW().sendMessageWithKey("havwila.role.auramancer.light_player",
+                    builder.addExtraLines(game.translate("havwila.role.auramancer.light_player",
                             Formatter.format("&light&", Aura.LIGHT.getChatColor() + game.translate(Aura.LIGHT.getKey())),
-                            Formatter.format("&player&", knownPlayer.getName()));
+                            Formatter.format("&player&", knownPlayer.getName())));
                 }
             }
             if (knownPlayer == null) {
@@ -150,8 +150,23 @@ public class Auramancer extends Role {
         if (!isAbilityEnabled()) return;
 
         IPlayerWW playerWW = event.getPlayerWW();
-        playerWW.getLastKiller().ifPresent(iPlayerWW -> {
-            if (this.getPlayerWW().equals(iPlayerWW)) {
+        playerWW.getLastKiller().ifPresent(killerWW -> {
+
+            if (currentAura == Aura.NEUTRAL && killerWW.getLocation().distance(this.getPlayerWW().getLocation()) < 50) {
+                //Compute the Aura the killer had before the kill
+                Aura auraKiller = killerWW.getRole().getAura();
+                if (killerWW.getPlayersKills().size() == 1) {
+                    List<IAuraModifier> modifiers = killerWW.getRole().getAuraModifiers();
+                    modifiers.removeAll(modifiers.stream().filter(a -> a.getName().equals("killer")).collect(Collectors.toList()));
+                    auraKiller = modifiers.size() == 0 ? killerWW.getRole().getDefaultAura() : modifiers.get(modifiers.size()-1).getAura();
+                }
+
+                Aura auraVictim = killerWW.getRole().getAura();
+                this.getPlayerWW().sendMessageWithKey("havwila.role.auramancer.aura_sense",
+                        Formatter.format("&auraVictim&", auraVictim.getChatColor() + game.translate(auraVictim.getKey())),
+                        Formatter.format("&auraKiller&", auraKiller.getChatColor() + game.translate(auraKiller.getKey())));
+            }
+            if (this.getPlayerWW().equals(killerWW)) {
                 if (auraLocked) return;
 
                 Aura auraDead = playerWW.getRole().getAura();
@@ -170,19 +185,6 @@ public class Auramancer extends Role {
                         Formatter.format("&aura_dead&", auraDead.getChatColor() + game.translate(auraDead.getKey())),
                         Formatter.format("&aura_new&", currentAura.getChatColor() + game.translate(currentAura.getKey())));
 
-            } else if (currentAura == Aura.NEUTRAL && playerWW.getLocation().distance(this.getPlayerWW().getLocation()) < 50) {
-                //Compute the Aura the killer had before the kill
-                Aura auraKiller = iPlayerWW.getRole().getAura();
-                if (iPlayerWW.getPlayersKills().size() == 1) {
-                    List<IAuraModifier> modifiers = iPlayerWW.getRole().getAuraModifiers();
-                    modifiers.removeAll(modifiers.stream().filter(a -> a.getName().equals("killer")).collect(Collectors.toList()));
-                    auraKiller = modifiers.size() == 0 ? iPlayerWW.getRole().getDefaultAura() : modifiers.get(modifiers.size()-1).getAura();
-                }
-
-                Aura auraVictim = iPlayerWW.getRole().getAura();
-                this.getPlayerWW().sendMessageWithKey("havwila.role.auramancer.aura_sense",
-                        Formatter.format("&auraVictim&", auraVictim.getChatColor() + game.translate(auraVictim.getKey())),
-                        Formatter.format("&auraKiller&", auraKiller.getChatColor() + game.translate(auraKiller.getKey())));
             }
         });
     }
