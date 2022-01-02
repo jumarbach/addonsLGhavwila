@@ -72,9 +72,9 @@ Neutre, aura Neutre
 
 Peut deviner le role d'autres joueurs. S'il réussit à deviner le role d'un joueur il gagne un coeur permanent, s'il échoue il perd un coeur permanent.
 
-Il peut utiliser la command /ww mindsilence <pseudo> pour payer un coeur permanent et désactiver les pouvoirs d'un joueur dont il a deviné le role.
+Il peut utiliser la command /ww mindsilence \<pseudo\> pour payer un coeur permanent et désactiver les pouvoirs d'un joueur dont il a deviné le role.
 
-Il peut utiliser la commande /ww mindswap <pseudo> <pseudo> pour payer deux coeurs permanents et échanger les roles de deux joueurs dont il a deviné les roles.
+Il peut utiliser la commande /ww mindswap \<pseudo\> \<pseudo\> pour payer deux coeurs permanents et échanger les roles de deux joueurs dont il a deviné les roles.
 
 ## Changelog
 
