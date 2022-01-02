@@ -4,6 +4,7 @@ import io.github.ph1lou.werewolfapi.DescriptionBuilder;
 import io.github.ph1lou.werewolfapi.Formatter;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
+import io.github.ph1lou.werewolfapi.enums.Aura;
 import io.github.ph1lou.werewolfapi.enums.Category;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
 import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
@@ -35,6 +36,11 @@ public class Mastermind extends RoleNeutral implements IGuesser, IAffectedPlayer
     @Override
     public void recoverPower() {
 
+    }
+
+    @Override
+    public Aura getDefaultAura() {
+        return Aura.NEUTRAL;
     }
 
     @Override

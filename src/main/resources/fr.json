@@ -82,7 +82,7 @@
         "display": "Auramancien",
         "item": "Role par havwila",
         "description": "Vous possédez des effets différents en fonction de l'aura que vous avez. Lorsque vous êtes affectés par un modificateur d'aura, votre aura devient l'aura du modificateur. Quand vous tuez un joueur avec une aura &dark&§r, votre aura s'améliore d'un cran.",
-        "passive_light": "§bPassif§r: Les joueurs proches à l'aura &light&§r disposent de 0.5 de force\n",
+        "passive_light": "§bPassif§r: Les joueurs proches à l'aura &light&§r disposent de 0.5 de force. Au début du jour, vous retirez aux joueurs proches le modificateur d'aura résultant du kill d'un joueur\n",
         "passive_neutral": "§bPassif§r: Lorsque un joueur est tué proche de vous (50 blocs), vous apprenez quelles sont les auras du mort et du tueur\n",
         "passive_dark": "§bPassif§r: Vous devez gagner §cseul§r. Vous infligez des dégâts de force aux joueurs avec une aura &light&§r. Vous disposez du pseudo d'un joueur à l'aura &light&. S'il ne reste plus de joueurs à l'aura &light&§r, votre aura ne change plus et vous obtenez speed permanent.\n",
         "aura_status": "Votre aura est &aura&§r\n",
