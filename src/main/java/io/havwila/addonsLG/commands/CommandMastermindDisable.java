@@ -5,7 +5,6 @@ import io.github.ph1lou.werewolfapi.ICommand;
 import io.github.ph1lou.werewolfapi.IPlayerWW;
 import io.github.ph1lou.werewolfapi.WereWolfAPI;
 import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.havwila.addonsLG.roles.Inquisitor;
 import io.havwila.addonsLG.roles.Mastermind;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -40,7 +39,7 @@ public class CommandMastermindDisable implements ICommand {
         }
 
         if (!mastermind.getAffectedPlayers().contains(targetWW)) {
-            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW));
+            playerWW.sendMessageWithKey("havwila.role.mastermind.not_guessed", Formatter.format("&player&", targetWW.getName()));
             return;
         }
 
