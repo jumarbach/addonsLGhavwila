@@ -149,7 +149,7 @@ public class GuessInventory implements InventoryProvider {
         if (items.size() > 45) {
             pagination.setItems(items.toArray(new ClickableItem[0]));
             pagination.setItemsPerPage(36);
-            pagination.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 1, 0));
+            pagination.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 0, 0));
             int page = pagination.getPage() + 1;
             contents.set(4, 0, null);
             contents.set(4, 1, null);
