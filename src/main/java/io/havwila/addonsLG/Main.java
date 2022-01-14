@@ -82,12 +82,14 @@ public class Main extends JavaPlugin {
                     .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
 
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.guess.command", new CommandGuess())
-                    .addStateWW(StateGame.GAME).addArgNumbers(1));
+                    .addStateWW(StateGame.GAME).addStateAccess(StatePlayer.ALIVE).addArgNumbers(1));
 
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.mastermind.command_disable", new CommandMastermindDisable())
+                    .addRoleKey("havwila.role.mastermind").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).addArgNumbers(1).setRequiredAbilityEnabled());
 
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.mastermind.command_swap", new CommandMastermindSwap())
+                    .addRoleKey("havwila.role.mastermind").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredAbilityEnabled().addArgNumbers(2));
 
             registerManager.registerConfig(new ConfigRegister(addonKey, "havwila.role.croupier.croupier_every_other_day")

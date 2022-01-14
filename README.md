@@ -78,6 +78,8 @@ Il peut utiliser la commande /ww mindswap \<pseudo\> \<pseudo\> pour payer deux 
 
 ## Changelog
 
+2.0.1: Bugfix Mastermind et command deviner
+
 2.0.0: Ajout Mastermind et Loup Muselant, rework Auramancien
 
 1.2.2: Ajout config permettant au chasseur de tirer et retrait du code du medium pour des raisons de compatibilité
