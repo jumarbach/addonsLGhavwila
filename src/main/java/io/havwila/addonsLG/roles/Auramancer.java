@@ -1,14 +1,17 @@
 package io.havwila.addonsLG.roles;
 
-import io.github.ph1lou.werewolfapi.*;
-import io.github.ph1lou.werewolfapi.enums.Aura;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
-import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
-import io.github.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
-import io.github.ph1lou.werewolfapi.rolesattributs.IRole;
-import io.github.ph1lou.werewolfapi.rolesattributs.Role;
+import fr.ph1lou.werewolfapi.enums.Aura;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
+import fr.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
+import fr.ph1lou.werewolfapi.events.game.life_cycle.FirstDeathEvent;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.utils.DescriptionBuilder;
+import fr.ph1lou.werewolfapi.role.impl.Role;
+import fr.ph1lou.werewolfapi.player.impl.PotionModifier;
+import fr.ph1lou.werewolfapi.player.interfaces.IAuraModifier;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

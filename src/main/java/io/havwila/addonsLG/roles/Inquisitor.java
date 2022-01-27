@@ -1,16 +1,17 @@
 package io.havwila.addonsLG.roles;
 
-import io.github.ph1lou.werewolfapi.DescriptionBuilder;
-import io.github.ph1lou.werewolfapi.Formatter;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.Aura;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.enums.TimerBase;
-import io.github.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
-import io.github.ph1lou.werewolfapi.rolesattributs.RoleWithLimitedSelectionDuration;
-import io.github.ph1lou.werewolfapi.utils.Utils;
+import fr.ph1lou.werewolfapi.enums.Aura;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.enums.TimerBase;
+import fr.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.impl.RoleWithLimitedSelectionDuration;
+import fr.ph1lou.werewolfapi.role.interfaces.IAffectedPlayers;
+import fr.ph1lou.werewolfapi.role.interfaces.IPower;
+import fr.ph1lou.werewolfapi.role.utils.DescriptionBuilder;
+import fr.ph1lou.werewolfapi.utils.Utils;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
 

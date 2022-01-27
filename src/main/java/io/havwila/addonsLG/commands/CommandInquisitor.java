@@ -1,9 +1,10 @@
 package io.havwila.addonsLG.commands;
 
-import io.github.ph1lou.werewolfapi.ICommand;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.commands.ICommand;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
 import io.havwila.addonsLG.roles.Inquisitor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

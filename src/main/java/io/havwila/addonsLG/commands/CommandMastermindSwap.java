@@ -1,12 +1,12 @@
 package io.havwila.addonsLG.commands;
 
-import io.github.ph1lou.werewolfapi.Formatter;
-import io.github.ph1lou.werewolfapi.ICommand;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.events.random_events.SwapEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IRole;
+import fr.ph1lou.werewolfapi.commands.ICommand;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.events.random_events.SwapEvent;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.interfaces.IRole;
 import io.havwila.addonsLG.roles.Mastermind;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

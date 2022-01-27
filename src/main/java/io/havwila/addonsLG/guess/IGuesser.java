@@ -1,7 +1,7 @@
 package io.havwila.addonsLG.guess;
 
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.enums.Category;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.enums.Category;
 
 import java.util.Set;
 

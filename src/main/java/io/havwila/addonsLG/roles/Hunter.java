@@ -1,20 +1,19 @@
 package io.havwila.addonsLG.roles;
 
 import fr.minuskube.inv.ClickableItem;
-import io.github.ph1lou.werewolfapi.DescriptionBuilder;
-import io.github.ph1lou.werewolfapi.Formatter;
-import io.github.ph1lou.werewolfapi.IConfiguration;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.Aura;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
-import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
-import io.github.ph1lou.werewolfapi.rolesattributs.RoleVillage;
-import io.github.ph1lou.werewolfapi.utils.BukkitUtils;
-import io.github.ph1lou.werewolfapi.utils.ItemBuilder;
-import net.md_5.bungee.api.chat.TextComponent;
+import fr.ph1lou.werewolfapi.game.IConfiguration;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.impl.RoleVillage;
+import fr.ph1lou.werewolfapi.role.interfaces.IAffectedPlayers;
+import fr.ph1lou.werewolfapi.role.interfaces.IPower;
+import fr.ph1lou.werewolfapi.role.utils.DescriptionBuilder;
+import fr.ph1lou.werewolfapi.enums.Aura;
+import fr.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
+import fr.ph1lou.werewolfapi.utils.BukkitUtils;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -23,7 +22,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
-import java.text.Format;
 import java.util.*;
 import java.util.stream.Collectors;
 

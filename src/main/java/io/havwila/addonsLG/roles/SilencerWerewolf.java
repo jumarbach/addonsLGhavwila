@@ -1,16 +1,16 @@
 package io.havwila.addonsLG.roles;
 
-import io.github.ph1lou.werewolfapi.DescriptionBuilder;
-import io.github.ph1lou.werewolfapi.Formatter;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.Camp;
-import io.github.ph1lou.werewolfapi.enums.Category;
-import io.github.ph1lou.werewolfapi.enums.StatePlayer;
-import io.github.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
-import io.github.ph1lou.werewolfapi.rolesattributs.IPower;
-import io.github.ph1lou.werewolfapi.rolesattributs.RoleWereWolf;
+import fr.ph1lou.werewolfapi.enums.Camp;
+import fr.ph1lou.werewolfapi.enums.Category;
+import fr.ph1lou.werewolfapi.enums.StatePlayer;
+import fr.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.impl.RoleWereWolf;
+import fr.ph1lou.werewolfapi.role.interfaces.IAffectedPlayers;
+import fr.ph1lou.werewolfapi.role.interfaces.IPower;
+import fr.ph1lou.werewolfapi.role.utils.DescriptionBuilder;
 import io.havwila.addonsLG.guess.IGuesser;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;

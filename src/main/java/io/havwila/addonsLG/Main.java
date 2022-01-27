@@ -1,8 +1,13 @@
 package io.havwila.addonsLG;
 
-import io.github.ph1lou.werewolfapi.GetWereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.*;
-import io.github.ph1lou.werewolfapi.registers.*;
+
+import fr.ph1lou.werewolfapi.GetWereWolfAPI;
+import fr.ph1lou.werewolfapi.enums.*;
+import fr.ph1lou.werewolfapi.registers.impl.AddonRegister;
+import fr.ph1lou.werewolfapi.registers.impl.CommandRegister;
+import fr.ph1lou.werewolfapi.registers.impl.ConfigRegister;
+import fr.ph1lou.werewolfapi.registers.impl.RoleRegister;
+import fr.ph1lou.werewolfapi.registers.interfaces.IRegisterManager;
 import io.havwila.addonsLG.commands.*;
 import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;

@@ -1,25 +1,25 @@
 package io.havwila.addonsLG.roles;
 
-import io.github.ph1lou.werewolfapi.DescriptionBuilder;
-import io.github.ph1lou.werewolfapi.Formatter;
-import io.github.ph1lou.werewolfapi.IPlayerWW;
-import io.github.ph1lou.werewolfapi.PotionModifier;
-import io.github.ph1lou.werewolfapi.WereWolfAPI;
-import io.github.ph1lou.werewolfapi.enums.*;
-import io.github.ph1lou.werewolfapi.events.ActionBarEvent;
-import io.github.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
-import io.github.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
-import io.github.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
-import io.github.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
-import io.github.ph1lou.werewolfapi.events.game.utils.WinConditionsCheckEvent;
-import io.github.ph1lou.werewolfapi.events.random_events.SwapEvent;
-import io.github.ph1lou.werewolfapi.events.roles.StealEvent;
-import io.github.ph1lou.werewolfapi.events.werewolf.NewWereWolfEvent;
-import io.github.ph1lou.werewolfapi.rolesattributs.IAffectedPlayers;
-import io.github.ph1lou.werewolfapi.rolesattributs.ITransformed;
-import io.github.ph1lou.werewolfapi.rolesattributs.Role;
-import io.github.ph1lou.werewolfapi.utils.BukkitUtils;
-import io.github.ph1lou.werewolfapi.utils.Utils;
+import fr.ph1lou.werewolfapi.enums.*;
+import fr.ph1lou.werewolfapi.events.ActionBarEvent;
+import fr.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
+import fr.ph1lou.werewolfapi.events.game.day_cycle.NightEvent;
+import fr.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
+import fr.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
+import fr.ph1lou.werewolfapi.events.game.utils.WinConditionsCheckEvent;
+import fr.ph1lou.werewolfapi.events.random_events.SwapEvent;
+import fr.ph1lou.werewolfapi.events.roles.StealEvent;
+import fr.ph1lou.werewolfapi.events.werewolf.NewWereWolfEvent;
+import fr.ph1lou.werewolfapi.game.WereWolfAPI;
+import fr.ph1lou.werewolfapi.player.impl.PotionModifier;
+import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
+import fr.ph1lou.werewolfapi.player.utils.Formatter;
+import fr.ph1lou.werewolfapi.role.impl.Role;
+import fr.ph1lou.werewolfapi.role.interfaces.IAffectedPlayers;
+import fr.ph1lou.werewolfapi.role.interfaces.ITransformed;
+import fr.ph1lou.werewolfapi.role.utils.DescriptionBuilder;
+import fr.ph1lou.werewolfapi.utils.BukkitUtils;
+import fr.ph1lou.werewolfapi.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -411,7 +411,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
 
         if (mother == null || !mother.isState(StatePlayer.ALIVE)) return;
 
-        if (game.getPlayerSize() == 3) {
+        if (game.getPlayersCount() == 3) {
             event.setCancelled(true);
             event.setVictoryTeam("havwila.role.romulus_remus.display");
         }

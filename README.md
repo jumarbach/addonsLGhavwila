@@ -78,6 +78,8 @@ Il peut utiliser la commande /ww mindswap \<pseudo\> \<pseudo\> pour payer deux 
 
 ## Changelog
 
+2.1.0: Update API
+
 2.0.1: Bugfix Mastermind et command deviner
 
 2.0.0: Ajout Mastermind et Loup Muselant, rework Auramancien
