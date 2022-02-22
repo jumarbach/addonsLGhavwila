@@ -456,8 +456,7 @@ public class RomulusRemus extends Role implements IAffectedPlayers, ITransformed
     }
 
     @Override
-    public void disableAbilities() {
-        super.disableAbilities();
+    public void disableAbilitiesRole() {
 
         if(!this.getPlayerWW().isState(StatePlayer.ALIVE)){
             return;

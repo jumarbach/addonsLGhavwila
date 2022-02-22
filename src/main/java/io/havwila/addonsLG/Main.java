@@ -42,10 +42,6 @@ public class Main extends JavaPlugin {
                     .addLoreKey("havwila.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
                     .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION).addConfig(Croupier::configOtherDay));
 
-            registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.hunter.display", Hunter.class)
-                    .addLoreKey("havwila.role.hunter.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
-                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION).addConfig(Hunter::configCanShoot));
-
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.romulus_remus.display", RomulusRemus.class)
                     .addLoreKey("havwila.role.romulus_remus.item")
                     .addCategory(Category.ADDONS)
@@ -78,14 +74,6 @@ public class Main extends JavaPlugin {
                     .addRoleKey("havwila.role.inquisitor.display").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredAbilityEnabled().setRequiredPower().addArgNumbers(1));
 
-            /*registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.auramancer.command", new CommandAuramancer())
-                    .addRoleKey("havwila.role.auramancer.display").addStateAccess(StatePlayer.ALIVE)
-                    .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(0));*/
-
-            registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.hunter.command", new CommandHunter())
-                    .addRoleKey("havwila.role.hunter.display").addStateAccess(StatePlayer.DEATH)
-                    .addStateWW(StateGame.GAME).setRequiredPower().setRequiredAbilityEnabled().addArgNumbers(1));
-
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.guess.command", new CommandGuess())
                     .addStateWW(StateGame.GAME).addStateAccess(StatePlayer.ALIVE).addArgNumbers(1));
 
@@ -97,11 +85,7 @@ public class Main extends JavaPlugin {
                     .addRoleKey("havwila.role.mastermind").addStateAccess(StatePlayer.ALIVE)
                     .addStateWW(StateGame.GAME).setRequiredAbilityEnabled().addArgNumbers(2));
 
-            registerManager.registerConfig(new ConfigRegister(addonKey, "havwila.role.croupier.croupier_every_other_day")
-                    .unSetAppearInMenu());
-
-            registerManager.registerConfig(new ConfigRegister(addonKey, "havwila.role.hunter.can_shoot")
-                    .unSetAppearInMenu());
+            registerManager.registerConfig(new ConfigRegister(addonKey, "havwila.role.croupier.croupier_every_other_day"));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

@@ -32,21 +32,6 @@
         "all_exposed": "[§eLG UHC§r] Tous les joueurs encore en vie ont eu leur rôle dévoilé. Vous ne pouvez plus utiliser votre pouvoir",
         "croupier_every_other_day": "Croupier tous les deux jours"
       },
-      "hunter": {
-        "display": "Chasseur",
-        "description": "Vous pouvez enqueter sur le cadavre d'un joueur en restant à moins de 20 blocs du cadavre et obtiendrez à chaque minute des informations sur les joueurs à moins de 70 blocs au moment de la mort",
-        "description_shoot": "A votre mort, vous pouvez tirer sur un joueur de votre choix autre que votre tueur",
-        "item": "",
-        "items": "1 arc, 64 flèches, un livre power III",
-        "clue_player": "[§eLG UHC§r] §b&player&§r est mort ici, §b&number&§r autres joueurs se trouvaient à proximité lors de sa mort",
-        "clue_role": "[§eLG UHC§r] §b&victim&§r était §b&role&§r. §b&players&§r étaient proches de lui lors de sa mort",
-        "clue_nearby": "[§eLG UHC§r] §b&players&§r étaient proches de §b&victim&§r lors de sa mort",
-        "command": "tirer",
-        "perform": "[§eLG UHC§r] Vous pouvez tirer sur un joueur autre que votre tueur pour lui faire perdre 5 coeurs avec §b/ww tirer§r. Vous avez 30 seconds",
-        "invalid_target": "[§eLG UHC§r] Vous ne pouvez pas tirer sur cette cible",
-        "success": "[§cLG UHC§r] Le chasseur a tiré sur &target&. Il perd 5 coeurs.",
-        "can_shoot": "Chasseur peut tirer après sa mort"
-      },
       "romulus_remus": {
         "display": "Romulus ou Remus",
         "item": "Role par havwila, par paires de 2",
