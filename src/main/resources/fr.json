@@ -82,7 +82,7 @@
         "display": "Mastermind",
         "item": "Role par havwila",
         "description": "Vous pouvez deviner les roles des joueurs avec §b/ww deviner joueur§r. Si vous devinez correctement, vous gagnez un coeur permanent, autrement vous en perdez un.\n La commande §b/ww mindswap joueur joueur§r, coutant 2 coeurs permanents et utilisable une fois vous permet d'échanger les roles de deux joueurs dont vos avez deviné le role.\n La commande §b/ww mindsilence joueur§r, coutant 1 coeur permanent, vous permet de désactiver les compétences d'un joueur dont vous avez deviné le role.",
-        "target_repeat": "[§cLG UHC§r] Vous avez déja tenté de deviner le role de ce joueur",
+        "repeat_target": "[§cLG UHC§r] Vous avez déja tenté de deviner le role de ce joueur",
         "guess_success": "[§cLG UHC§r] Vous avez deviné le role de &player&. Vous obtenez un coeur permanent supplémentaire",
         "guess_fail": "[§cLG UHC§r] Vous vous êtes trompé de rôle. Vous perdez donc un coeur permanent",
         "not_guessed": "[§eLG UHC§r] Vous n'avez pas deviné le role de &player&. Vous ne pouvez pas effectuer cette action",
