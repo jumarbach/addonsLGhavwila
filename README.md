@@ -7,6 +7,8 @@ If you'd like an english translation, please contact me.
 
 Falls eine Deutsche übersetzung erwünscht ist, kontaktiert mich bitte.
 
+Si vous souhaitez réutiliser/réimplémanter les roles sur votre propre plugin LG, pas de soucis. Je vous prierais juste de me laisser un petit message dans ce cas.
+
 ## Description
 
 Ajoute les roles suivants:
@@ -79,6 +81,8 @@ Il peut utiliser la commande /ww mindswap \<pseudo\> \<pseudo\> pour payer deux 
 ## Changelog
 
 2.2.0: Update API
+
+2.1.1 Retrait Chasseur
 
 2.1.0: Update API
 
