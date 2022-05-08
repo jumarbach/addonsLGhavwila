@@ -100,7 +100,10 @@ public class GuessInventory implements InventoryProvider {
         List<ClickableItem> items = new ArrayList<>();
 
 
-        for (RoleRegister roleRegister : main.getAPI().getRegisterManager().getRolesRegister()) {
+        main.getAPI().getRegisterManager().getRolesRegister()
+                .stream()
+                .sorted((o1, o2) -> game.translate(o1.getKey()).compareToIgnoreCase(game.translate(o2.getKey())))
+                .forEach(roleRegister -> {
 
             if (roleRegister.getCategories().contains(this.category)) {
 
@@ -108,12 +111,11 @@ public class GuessInventory implements InventoryProvider {
                 AtomicBoolean unRemovable = new AtomicBoolean(false);
                 List<String> lore2 = new ArrayList<>(lore);
                 roleRegister.getLoreKey().stream().map(game::translate).map(s -> Arrays.stream(s.split("\\n")).collect(Collectors.toList())).forEach(lore2::addAll);
-                roleRegister.getRequireRole().ifPresent(roleKey -> lore2.add(game.translate("werewolf.menu.roles.need", game.translate(roleKey))));
+                roleRegister.getRequireRoles().forEach(roleKey -> lore2.add(game.translate("werewolf.menu.roles.need", Formatter.role(game.translate(roleKey)))));
                 main.getAPI().getRegisterManager().getRolesRegister().stream()
-                        .filter(roleRegister1 -> roleRegister1.getRequireRole().isPresent())
-                        .filter(roleRegister1 -> game.getConfig().getRoleCount(roleRegister1.getKey()) > 0)
-                        .filter(roleRegister1 -> roleRegister1.getRequireRole().get().equals(key))
+                        .filter(roleRegister1 -> roleRegister1.getRequireRoles().stream().anyMatch(requiredRole -> requiredRole.equals(roleRegister1.getKey())))
                         .map(RoleRegister::getKey)
+                        .filter(roleRegister1key -> game.getConfig().getRoleCount(roleRegister1key) > 0)
                         .findFirst().ifPresent(s -> {
                     lore2.add(game.translate("werewolf.menu.roles.dependant_load", game.translate(s)));
                     unRemovable.set(true);
@@ -145,7 +147,8 @@ public class GuessInventory implements InventoryProvider {
                     player.closeInventory();
                 }));
             }
-        }
+        });
+
         if (items.size() > 45) {
             pagination.setItems(items.toArray(new ClickableItem[0]));
             pagination.setItemsPerPage(36);

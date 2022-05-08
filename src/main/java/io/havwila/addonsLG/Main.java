@@ -13,7 +13,6 @@ import io.havwila.addonsLG.roles.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
@@ -36,34 +35,38 @@ public class Main extends JavaPlugin {
 
         try {
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.witness.display", Witness.class)
-                    .addLoreKey("havwila.role.witness.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER));
+                    .addLoreKey("havwila.role.witness.item").addCategory(Category.ADDONS)
+                    .addAttribute(RoleAttribute.VILLAGER).addAttribute(RoleAttribute.MINOR_INFORMATION)
+                    .addCategory(Category.VILLAGER));
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.croupier.display", Croupier.class)
                     .addLoreKey("havwila.role.croupier.item").addCategory(Category.ADDONS).addCategory(Category.VILLAGER)
-                    .setRandomCompositionAttribute(RandomCompositionAttribute.INFORMATION).addConfig(Croupier::configOtherDay));
+                    .addAttribute(RoleAttribute.VILLAGER).addAttribute(RoleAttribute.INFORMATION)
+                    .addConfig(Croupier::configOtherDay));
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.romulus_remus.display", RomulusRemus.class)
                     .addLoreKey("havwila.role.romulus_remus.item")
-                    .addCategory(Category.ADDONS)
+                    .addCategory(Category.ADDONS).addAttribute(RoleAttribute.HYBRID)
                     .addCategory(Category.NEUTRAL).setRequireDouble());
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.inquisitor.display", Inquisitor.class)
                     .addLoreKey("havwila.role.inquisitor.item")
-                    .addCategory(Category.ADDONS)
+                    .addCategory(Category.ADDONS).addAttribute(RoleAttribute.VILLAGER)
                     .addCategory(Category.VILLAGER));
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.auramancer.display", Auramancer.class)
                     .addLoreKey("havwila.role.auramancer.item")
-                    .addCategory(Category.ADDONS)
+                    .addCategory(Category.ADDONS).addAttribute(RoleAttribute.HYBRID)
                     .addCategory(Category.VILLAGER));
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.mastermind.display", Mastermind.class)
                     .addLoreKey("havwila.role.mastermind.item")
-                    .addCategory(Category.NEUTRAL)
+                    .addCategory(Category.NEUTRAL).addAttribute(RoleAttribute.NEUTRAL)
                     .addCategory(Category.ADDONS));
 
             registerManager.registerRole(new RoleRegister(addonKey, "havwila.role.silencer_werewolf.display", SilencerWerewolf.class)
-                    .addLoreKey("havwila.role.silencer_werewolf.item").addCategory(Category.WEREWOLF).addCategory(Category.ADDONS));
+                    .addLoreKey("havwila.role.silencer_werewolf.item").addCategory(Category.WEREWOLF).addCategory(Category.ADDONS)
+                    .addAttribute(RoleAttribute.WEREWOLF));
 
 
             registerManager.registerCommands(new CommandRegister(addonKey, "havwila.role.croupier.command", new CommandCroupier())
