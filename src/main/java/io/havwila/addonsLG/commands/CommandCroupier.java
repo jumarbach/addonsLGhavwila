@@ -1,6 +1,8 @@
 package io.havwila.addonsLG.commands;
 
+import fr.ph1lou.werewolfapi.annotations.RoleCommand;
 import fr.ph1lou.werewolfapi.commands.ICommand;
+import fr.ph1lou.werewolfapi.commands.ICommandRole;
 import fr.ph1lou.werewolfapi.enums.StatePlayer;
 import fr.ph1lou.werewolfapi.game.WereWolfAPI;
 import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
@@ -14,17 +16,20 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CommandCroupier implements ICommand {
+@RoleCommand(key = "havwila.role.croupier.command", roleKeys = {"havwila.role.croupier.display"},
+        argNumbers = 1,
+        requiredPower = true)
+public class CommandCroupier implements ICommandRole {
 
     @Override
-    public void execute(WereWolfAPI game, Player player, String[] args) {
+    public void execute(WereWolfAPI game, IPlayerWW playerWW, String[] args) {
 
-        UUID uuid = player.getUniqueId();
+        /*UUID uuid = player.getUniqueId();
         IPlayerWW playerWW = game.getPlayerWW(uuid).orElse(null);
 
         if (playerWW == null) {
             return;
-        }
+        }*/
 
         List<IPlayerWW> allPlayers = game.getPlayersWW().stream().filter(p -> p.isState(StatePlayer.ALIVE)).collect(Collectors.toList());
 
@@ -90,8 +95,8 @@ public class CommandCroupier implements ICommand {
         allPlayers.addAll(exposedPlayers);
 
         IRole r1 = pRevealed.getRole();
-        IRole r2 = null;
-        IRole r3 = null;
+        IRole r2;
+        IRole r3;
 
         List<IPlayerWW> enemyPlayers = new ArrayList<>();
         ListIterator<IPlayerWW> iterator = allPlayers.listIterator();

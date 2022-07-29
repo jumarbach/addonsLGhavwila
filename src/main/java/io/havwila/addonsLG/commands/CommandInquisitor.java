@@ -1,6 +1,8 @@
 package io.havwila.addonsLG.commands;
 
+import fr.ph1lou.werewolfapi.annotations.RoleCommand;
 import fr.ph1lou.werewolfapi.commands.ICommand;
+import fr.ph1lou.werewolfapi.commands.ICommandRole;
 import fr.ph1lou.werewolfapi.enums.StatePlayer;
 import fr.ph1lou.werewolfapi.game.WereWolfAPI;
 import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
@@ -11,17 +13,14 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class CommandInquisitor implements ICommand {
+@RoleCommand(key = "havwila.role.inquisitor.command", roleKeys = {"havwila.role.inquisitor.display"},
+        argNumbers = 1,
+        requiredPower = true)
+public class CommandInquisitor implements ICommandRole {
 
     @Override
-    public void execute(WereWolfAPI game, Player player, String[] args) {
+    public void execute(WereWolfAPI game, IPlayerWW playerWW, String[] args) {
 
-        UUID uuid = player.getUniqueId();
-        IPlayerWW playerWW = game.getPlayerWW(uuid).orElse(null);
-
-        if (playerWW == null) {
-            return;
-        }
         Inquisitor inquisitor = (Inquisitor) playerWW.getRole();
 
         Player playerArg = Bukkit.getPlayer(args[0]);

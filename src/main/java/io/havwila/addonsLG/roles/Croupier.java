@@ -1,9 +1,14 @@
 package io.havwila.addonsLG.roles;
 
 import fr.minuskube.inv.ClickableItem;
+import fr.ph1lou.werewolfapi.annotations.Configuration;
+import fr.ph1lou.werewolfapi.annotations.ConfigurationBasic;
+import fr.ph1lou.werewolfapi.annotations.Role;
 import fr.ph1lou.werewolfapi.enums.Aura;
+import fr.ph1lou.werewolfapi.enums.Category;
+import fr.ph1lou.werewolfapi.enums.RoleAttribute;
 import fr.ph1lou.werewolfapi.enums.StatePlayer;
-import fr.ph1lou.werewolfapi.enums.TimerBase;
+import fr.ph1lou.werewolfapi.basekeys.TimerBase;
 import fr.ph1lou.werewolfapi.events.game.day_cycle.DayEvent;
 import fr.ph1lou.werewolfapi.game.WereWolfAPI;
 import fr.ph1lou.werewolfapi.player.interfaces.IPlayerWW;
@@ -21,14 +26,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+    @Role(key = "havwila.role.croupier.display",
+            category = Category.VILLAGER,
+            attributes = {RoleAttribute.INFORMATION, RoleAttribute.VILLAGER},
+            configurations = {@Configuration(config = @ConfigurationBasic(key = "havwila.role.croupier.croupier_every_other_day"))})
 public class Croupier  extends RoleWithLimitedSelectionDuration implements IAffectedPlayers {
 
     private final List<IPlayerWW> affectedPlayers = new ArrayList<>();
     private boolean power;
     private int dayNumber = -8;
 
-    public Croupier(WereWolfAPI game, IPlayerWW playerWW, String key) {
-        super(game, playerWW, key);
+    public Croupier(WereWolfAPI game, IPlayerWW playerWW) {
+        super(game, playerWW);
     }
 
     @Override
@@ -81,7 +90,7 @@ public class Croupier  extends RoleWithLimitedSelectionDuration implements IAffe
         setPower(true);
 
         getPlayerWW().sendMessageWithKey("havwila.role.croupier.perform",
-                Formatter.format("&time&", Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION.getKey()))));
+                Formatter.format("&time&", Utils.conversion(game.getConfig().getTimerValue(TimerBase.POWER_DURATION))));
     }
 
     public static ClickableItem configOtherDay(WereWolfAPI game) {

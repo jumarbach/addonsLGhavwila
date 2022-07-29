@@ -1,8 +1,11 @@
 package io.havwila.addonsLG.roles;
 
+import fr.ph1lou.werewolfapi.annotations.Role;
 import fr.ph1lou.werewolfapi.enums.Aura;
+import fr.ph1lou.werewolfapi.enums.Category;
+import fr.ph1lou.werewolfapi.enums.RoleAttribute;
 import fr.ph1lou.werewolfapi.enums.StatePlayer;
-import fr.ph1lou.werewolfapi.enums.TimerBase;
+import fr.ph1lou.werewolfapi.basekeys.TimerBase;
 import fr.ph1lou.werewolfapi.events.game.life_cycle.FinalDeathEvent;
 import fr.ph1lou.werewolfapi.events.game.timers.WereWolfListEvent;
 import fr.ph1lou.werewolfapi.events.random_events.SwapEvent;
@@ -25,10 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+    @Role(key="havwila.role.witness.display",
+            category = Category.VILLAGER,
+            attributes = {RoleAttribute.MINOR_INFORMATION, RoleAttribute.VILLAGER})
 public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
 
-    public Witness(WereWolfAPI main, IPlayerWW playerWW, String key) {
-        super(main,playerWW, key);
+    public Witness(WereWolfAPI main, IPlayerWW playerWW) {
+        super(main,playerWW);
     }
 
     private final List<IPlayerWW> affectedPlayer = new ArrayList<>();
@@ -51,7 +57,7 @@ public class Witness extends RoleVillage implements IAffectedPlayers, IPower {
         if (affectedPlayer.isEmpty()) {
             if (power) {
                 descBuilder.addExtraLines(game.translate("havwila.role.witness.culprit_unknown", Formatter.format("&time&",
-                                Utils.conversion(game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST.getKey())))));
+                                Utils.conversion(game.getConfig().getTimerValue(TimerBase.WEREWOLF_LIST)))));
             } else {
                 descBuilder.addExtraLines(game.translate("havwila.role.witness.culprit_dead"));
             }
